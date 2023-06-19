@@ -46,7 +46,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Deployment
-      uses: appleboy/ssh-action@main
+      uses: appleboy/ssh-action@master
       with:
         host: ${{secrets.SSH_HOST}}
         password: ${{secrets.SSH_PASSWORD}}
