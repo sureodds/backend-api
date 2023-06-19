@@ -32,22 +32,24 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
-      run: vendor/bin/phpunit
-      
+      run:
+        vendor/bin/phpunit
+        vendor/bin/phpstan analyse app
+
   deploy-aws:
-  
+
     runs-on: ubuntu-latest
-    
+
     steps:
-      
+
     - name: Checkout
       uses: actions/checkout@v2
     - name: Deployment
-      uses: appleboy/ssh-actions@master
+      uses: appleboy/ssh-actions@main
       with:
         host: ${{secrets.SSH_HOST}}
         password: ${{secrets.SSH_PASSWORD}}
         username: ${{secrets.SSH_USERNAME}}
         script: |
-          cd /var/www/sureodds-backend/
+          cd /var/www/sureOdds-backend/
           ./prod_server_deploy.sh
