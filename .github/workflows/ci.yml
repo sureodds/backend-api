@@ -33,7 +33,7 @@ jobs:
       with:
 
         host: ${{secrets.SSH_HOST}}
-        password: ${{secrets.SSH_SECRET_KEY}}
+        password: ${{secrets.SSH_PASSWORD}}
         username: ${{secrets.SSH_USERNAME}}
         script: |
           cd /var/www/sureOdds-backend/
