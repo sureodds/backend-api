@@ -15,7 +15,7 @@ echo "Deploying application ..."
     php artisan cache:clear
     php artisan optimize:clear
     # Reload PHP to update opcache
-    echo "" | sudo -S service php7.4-fpm reload
+    echo "" | sudo -S service php8.1-fpm reload
     #Install frontend dependecies
     # npm install
     # #build frontend in production
