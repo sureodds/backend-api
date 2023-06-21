@@ -31,9 +31,9 @@ jobs:
     - name: Deployment
       uses: appleboy/ssh-action@master
       with:
-        host: ${{secrets.SSH_HOST}}
-        password: ${{secrets.SSH_PASSWORD}}
-        username: ${{secrets.SSH_USERNAME}}
+        host: "ec2-52-23-226-78.compute-1.amazonaws.com"
+        password: "sweetDreams@1998"
+        username: "root"
         script: |
           cd /var/www/sureOdds-backend/
           ./prod_server_deploy.sh
