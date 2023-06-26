@@ -32,7 +32,7 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: "34.201.145.161"
-        key: ${{secrets.AWS_PRIVATE_KEY}}
+        key: ${{secrets.SSH-KEY}}
         username: "ubuntu"
         script: |
           cd /var/www/sureOdds-backend/
