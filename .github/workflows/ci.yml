@@ -32,7 +32,7 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: ${{secrets.SSH_HOST}}
-        key: ${{secrets.SSH_PASSWORD}}
+        key: ${{secrets.SSH_SECRET_KEY}}
         username: ${{secrets.SSH_USERNAME}}
         script: |
           cd /var/www/sureOdds-backend/
