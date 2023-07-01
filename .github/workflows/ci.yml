@@ -28,28 +28,13 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Configure SSH
-      run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh/github-actions-key
-          chmod 600 ~/.ssh/github-actions-key
-          cat >>~/.ssh/config <<END
-          Host ec2
-            HostName $SSH_HOST
-            User $SSH_USER
-            IdentityFile ~/.ssh/github-actions-key
-            StrictHostKeyChecking no
-          END
-      env:
-          SSH_HOST: "34.201.145.161"
-          SSH_USER: "ubuntu"
-          SSH_KEY: ${{ secrets.AWS_EC2_SSH_PRIVATE_KEY }}
+ 
     - name: Deployment
       uses: appleboy/ssh-action@master
       with:
-        host: "34.201.145.161"
+        host: ${{secrets.AWS_EC2_HOSTNAME}}
         key: ${{secrets.AWS_EC2_SSH_PRIVATE_KEY}}
-        username: "ubuntu"
+        username: ${{secrets.AWS_EC2_USERNAME}}
         script: |
           cd /var/www/sureOdds-backend/
           ./prod_server_deploy.sh
