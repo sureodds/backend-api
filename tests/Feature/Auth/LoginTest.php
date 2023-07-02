@@ -31,3 +31,29 @@ it('has auth/login page', function () {
 
     assertDatabaseHas('users', Arr::except($data, ['password']));
 });
+
+it('has password mismatched', function () {
+
+    $data = [
+        "first_name" => fake()->firstName(),
+        "last_name" => fake()->lastName(),
+        'email' => fake()->email(),
+        'password' => "P@ssw0rd1",
+        'phone_number' => fake()->phoneNumber()
+    ];
+
+    Badge::factory()->create();
+    $user = User::factory()->create();
+
+    $reponse =
+        $this->post(route('login'), [
+            'email' => $user->email,
+            'password' => $data['password']
+        ]);
+
+    $reponse->assertStatus(302);
+
+    assertDatabaseCount('users', 1);
+
+    $this->assertGuest();
+});

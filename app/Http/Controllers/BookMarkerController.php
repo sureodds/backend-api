@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateBookMarkerRequest;
+use App\Http\Requests\UpdateBookMarkerRequest;
 use App\Http\Resources\BookMarkerResource;
 use App\Models\BookMarker;
 use Illuminate\Http\JsonResponse;
@@ -64,13 +65,13 @@ class BookMarkerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BookMarker $bookMarker): JsonResponse
+    public function update(UpdateBookMarkerRequest $request, BookMarker $bookMarker): JsonResponse
     {
         //
         $bookMarker->update($request->validated());
 
         if ($request->has('logo') && !empty($request->file('logo'))) {
-            $bookMarker->addMediaFromRequest('image')->toMediaCollection('logo');
+            $bookMarker->addMediaFromRequest('logo')->toMediaCollection('logo');
         }
 
         return $this->success(

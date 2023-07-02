@@ -31,6 +31,7 @@ class AuthController extends Controller
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationValidationException::withMessages([
                 'password' => ['Password mismatched'],
+
             ]);
         }
 
