@@ -21,27 +21,11 @@ class UserController extends Controller
         });
 
         $users = UserResource::collection($users->paginate(20))->response()->getData(true);
-        
+
         return $this->allList(
             $users,
             message: "Users return successfully",
         );
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -59,14 +43,6 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(int $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(UpdateUserRequest $request, int $id) : JsonResponse
@@ -74,7 +50,7 @@ class UserController extends Controller
         //
         $user = User::find($id);
         $user->update($request->validated());
-
+      
         if($request->has('profile_picture')&& !empty($request->file('profile_picture'))) {
             $user->addMediaFromRequest('profile_picture')->toMediaCollection('profile_picture');
         }
@@ -92,7 +68,7 @@ class UserController extends Controller
     {
         //
         $user = User::find($id);
-        $$user->delete();
+        $user->delete();
 
         return $this->success(
             message: "User deleted successfully",

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateUserRequest extends FormRequest
+class CreateBookMarkerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +23,10 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             //
-            'profile_picture' => ['nullable','image', 'mimes:png,jpg,jpeg'],
-            'first_name' => ['nullable', 'string', 'required'],
-            'last_name' => ['nullable', 'string', 'required'],
-            'phone_number' => ['nullable', 'string', 'required'],
-            'email' => ['nullable', 'email', 'unique:users,email'],
-            'country' => ['nullable', 'string']
+            'name' => ['required', 'string'],
+            'logo' => ['required', 'image', 'mimes:png,jpg'],
+            'code' => ['nullable', 'string'],
+            'link' => ['nullable', 'url']
         ];
     }
 }

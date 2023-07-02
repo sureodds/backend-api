@@ -23,8 +23,8 @@ class LoginRequest extends FormRequest
     {
         return [
             //
-            'data.attributes.email' => ['required', 'email', 'exists:users,email'],
-            'data.attributes.password' => ['required']
+            'email' => ['required', 'email', 'exists:users,email'],
+            'password' => ['required']
         ];
     }
 }

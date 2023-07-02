@@ -25,11 +25,10 @@ class AuthController extends Controller
     //
     public function login(LoginRequest $request): JsonResponse
     {
-        $request = $request->validated()['data']['attributes'];
 
-        $user = User::where('email', $request['email'])->first();
+        $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request['password'], $user->password)) {
+        if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationValidationException::withMessages([
                 'password' => ['Password mismatched'],
             ]);
@@ -48,7 +47,7 @@ class AuthController extends Controller
 
     public function register(RegistrationRequest $request): JsonResponse
     {
-        $user = User::create($request->validated()['data']['attributes']);
+        $user = User::create($request->validated());
 
         $user->assignRole('creator administrator');
 
@@ -62,7 +61,7 @@ class AuthController extends Controller
 
     public function registerUsers(RegistrationRequest $request): JsonResponse
     {
-        $user = User::create($request->validated()['data']['attributes']);
+        $user = User::create($request->validated());
 
         $user->assignRole('user');
 

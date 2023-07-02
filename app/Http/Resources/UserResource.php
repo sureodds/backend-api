@@ -31,11 +31,11 @@ class UserResource extends JsonResource
                     'type' => 'user_wallet',
                     'id' => $this->wallet?->id,
                     'attribute' => [
-                        'balance' => $this->wallet->balance,
-                        'withdrawn' => $this->wallet->withdrawn,
-                        'account_name' => $this->wallet->account_name,
-                        'account_number' => $this->wallet->account_number,
-                        'bank_name' => $this->wallet->bank_name
+                        'balance' => $this->wallet?->balance,
+                        'withdrawn' => $this->wallet?->withdrawn,
+                        'account_name' => $this->wallet?->account_name,
+                        'account_number' => $this->wallet?->account_number,
+                        'bank_name' => $this->wallet?->bank_name
                     ]
                 ],
                 'badge' => BadgeResource::collection($this->whenLoaded('badges'))

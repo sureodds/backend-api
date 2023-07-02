@@ -25,7 +25,7 @@ class BadgeRequest extends FormRequest
             //
             'title' => ['string', 'required'],
             'level' => ['string', 'required'],
-            'image' => ['required' ,'file:image']
+            'image' => ['required' ,'image']
         ];
     }
 }

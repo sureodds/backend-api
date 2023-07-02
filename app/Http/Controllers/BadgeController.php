@@ -37,10 +37,17 @@ class BadgeController extends Controller
         );
     }
 
-    public function update(Request $request, string $badge_id) : JsonResponse
+    public function update(Request $request, mixed $badge) : JsonResponse
     {
-        $badge = Badge::find($badge_id);
-        $badge->update($request->validated());
+
+        $badge = Badge::find($badge);
+
+        $badge->update(
+            [
+                'title' => $request->title,
+                'level' => $request->level
+            ]
+        );
 
         if ($request->has('image') && !empty($request->file('image'))) {
             $badge->addMediaFromRequest('image')->toMediaCollection('image');
@@ -69,7 +76,7 @@ class BadgeController extends Controller
         $badge = Badge::find($badge_id);
 
         return $this->success(
-            message: "Badge fetchedsuccessfully",
+            message: "Badge fetched successfully",
             data: new BadgeResource($badge),
             status: 200
         );

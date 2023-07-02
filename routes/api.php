@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BadgeController;
+use App\Http\Controllers\BookMarkerController;
 use App\Http\Controllers\UserController;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
@@ -57,7 +58,12 @@ Route::prefix('v1')->group(function () {
 
     Route::group(['middleware' => ['auth:api']], static function () {
 
+        Route::delete('user/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+        Route::get('user/{id}', [UserController::class, 'show'])->name('users.show');
+        Route::patch('user/{id}', [UserController::class, 'update'])->name('users.update');
+        Route::get('users', [UserController::class, 'index'])->name('users.index');
         Route::apiResource('badges', BadgeController::class);
-        Route::apiResource('users', UserController::class);
+
+        Route::apiResource('bookMarker', BookMarkerController::class);
     });
  });
