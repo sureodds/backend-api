@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BadgeController;
 use App\Http\Controllers\BookMarkerController;
+use App\Http\Controllers\UserBookMarkerController;
 use App\Http\Controllers\UserController;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
@@ -65,5 +66,7 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('badges', BadgeController::class);
 
         Route::apiResource('bookMarker', BookMarkerController::class);
+
+        Route::resource('user.bookMarker', UserBookMarkerController::class)->shallow()->only(['index', 'store','destroy']);
     });
  });

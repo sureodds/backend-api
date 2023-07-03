@@ -50,7 +50,7 @@ class UserController extends Controller
         //
         $user = User::find($id);
         $user->update($request->validated());
-      
+
         if($request->has('profile_picture')&& !empty($request->file('profile_picture'))) {
             $user->addMediaFromRequest('profile_picture')->toMediaCollection('profile_picture');
         }
@@ -76,4 +76,6 @@ class UserController extends Controller
             status: 200
         );
     }
+
+    
 }

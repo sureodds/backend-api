@@ -38,7 +38,8 @@ class UserResource extends JsonResource
                         'bank_name' => $this->wallet?->bank_name
                     ]
                 ],
-                'badge' => BadgeResource::collection($this->whenLoaded('badges'))
+                'badge' => BadgeResource::collection($this->whenLoaded('badges')),
+                'book_markers' => BookMarkerResource::collection($this->whenLoaded('bookmarkers'))
             ]
         ];
     }

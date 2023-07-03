@@ -48,7 +48,7 @@ class User extends Authenticatable implements HasMedia
         'remember_token',
     ];
 
-    protected $with = ['wallet', 'badges'];
+    protected $with = ['wallet', 'badges', 'bookmarkers'];
 
     /**
      * The attributes that should be cast.
@@ -109,6 +109,11 @@ class User extends Authenticatable implements HasMedia
         return Attribute::make(
             get: fn () => !is_null($this->email_verified_at),
         );
+    }
+
+    public function bookmarkers() : BelongsToMany
+    {
+        return $this->belongsToMany(Bookmarker::class, 'book_marker_user');
     }
 
 
