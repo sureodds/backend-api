@@ -113,7 +113,7 @@ class User extends Authenticatable implements HasMedia
 
     public function bookmarkers() : BelongsToMany
     {
-        return $this->belongsToMany(Bookmarker::class, 'book_marker_user');
+        return $this->belongsToMany(BookMarker::class, 'book_marker_user');
     }
 
 

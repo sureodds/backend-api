@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BadgeController;
 use App\Http\Controllers\BookMarkerController;
+use App\Http\Controllers\LeagueController;
 use App\Http\Controllers\UserBookMarkerController;
 use App\Http\Controllers\UserController;
 use App\Http\Resources\UserResource;
@@ -68,5 +69,10 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('bookMarker', BookMarkerController::class);
 
         Route::resource('user.bookMarker', UserBookMarkerController::class)->shallow()->only(['index', 'store','destroy']);
+        Route::apiResource('leagues', LeagueController::class);
+
+        Route::prefix('feature')->group(function () {
+            Route::get('features-by-league/{id}', [LeagueController::class, 'getFixturesByLeagueId'])->name('getFixturesByLeagueId');
+        });
     });
  });

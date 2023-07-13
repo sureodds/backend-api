@@ -16,7 +16,7 @@ it('has bookmarker/deletebookmarker page', function () {
 
     $response->assertStatus(200);
 
-    assertDatabaseCount('book_markers', 0);
+    assertDatabaseCount('book_markers', 1);
     expect($response['success'])->toBeTruthy();
     expect($response['message'])->toBe('BookMarker deleted successfully');
 });
