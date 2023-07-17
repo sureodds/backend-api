@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\HttpStatusCode;
 use App\Http\Requests\CreateBookMarkerRequest;
 use App\Http\Requests\UpdateBookMarkerRequest;
 use App\Http\Resources\BookMarkerResource;
 use App\Models\BookMarker;
+use App\Services\FootBallApiService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BookMarkerController extends Controller
 {
+  
     /**
      * Display a listing of the resource.
      */
@@ -94,4 +98,6 @@ class BookMarkerController extends Controller
             status: 200
         );
     }
+
+
 }

@@ -7,8 +7,13 @@ use App\Http\Resources\LeagueResource;
 use App\Models\League;
 use App\Models\Season;
 use App\Services\FootBallApiService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
+
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 
 class LeagueController extends Controller
 {
@@ -21,11 +26,11 @@ class LeagueController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request) : JsonResponse
     {
         //
         $leagues = QueryBuilder::for(League::class)
-        ->allowFilters([
+        ->allowedFilters([
             'name',
 
         ])
@@ -42,11 +47,10 @@ class LeagueController extends Controller
     }
 
 
-
     /**
      * Display the specified resource.
      */
-    public function show(League $league)
+    public function show(League $league) : JsonResponse
     {
         //
         return $this->success(
@@ -61,7 +65,7 @@ class LeagueController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(League $league)
+    public function destroy(League $league) : JsonResponse
     {
         //
         $league->delete();
@@ -73,27 +77,49 @@ class LeagueController extends Controller
 
     }
 
-    public function getFixturesByLeagueId(string $id) : mixed
+    public function getFixturesByLeagueId(Request $request, string $id) : JsonResponse
     {
+
         $league = League::find($id);
-        $season = Season::where('league_id', $league->id)->orderBy('year')->first();
+        $season = Season::where('league_id', $league->id)->orderByDesc('year')->first();
+        $cacheKey = "league_features_{$league->id}_{$season->year}";
 
-        try {
-            //code...
-            $response = $this->footballService->getFeatureByLeague($league->league_api_id, $season->year);
+        // Retrieve the paginated response from the cache if it exists
+        $paginatedResponse = Cache::remember($cacheKey, $minutes = 60, function () use ($league, $season) {
+            try {
+                $response = $this->footballService->getFeatureByLeague($league->league_api_id, $season->year);
 
-            return $this->success(
-                message: "League features fetched successfully",
-                data: $response,
-                status: HttpStatusCode::SUCCESSFUL->value
-            );
+                
+                $page = request('page', 1);
+                $perPage = 10; // Adjust the number of items per page as needed
+                $totalItems = count($response);
 
-        } catch (\Throwable $th) {
-            //throw $th;
+                $paginator = new LengthAwarePaginator(
+                    $response,
+                    $totalItems,
+                    $perPage,
+                    $page,
+                    ['path' => request()->url()]
+                );
+
+                return $paginator;
+            } catch (\Throwable $th) {
+                return null;
+            }
+        });
+
+        if ($paginatedResponse === null) {
             return $this->failure(
-                message:"Oops, something went wrong",
+                message: "Oops, something went wrong",
                 status: HttpStatusCode::BAD_REQUEST->value
             );
         }
+
+        return $this->success(
+            message: "League features fetched successfully",
+            data: $paginatedResponse,
+            status: HttpStatusCode::SUCCESSFUL->value
+        );
+
     }
 }

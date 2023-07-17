@@ -116,6 +116,11 @@ class User extends Authenticatable implements HasMedia
         return $this->belongsToMany(BookMarker::class, 'book_marker_user');
     }
 
+    public function forecast_matches() : HasMany
+    {
+        return $this->hasMany(ForecastMatch::class);
+    }
+
 
     public static function boot()
     {

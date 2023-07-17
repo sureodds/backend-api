@@ -14,6 +14,8 @@ class BadgeResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+
+        
         return [
             'type' => 'badge',
             'id' => $this->id,

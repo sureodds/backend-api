@@ -7,22 +7,15 @@ use App\Models\Country;
 use App\Models\League;
 use App\Models\Season;
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
+
 
 class FootBallApiService {
 
 
-    public function getBookMarker() : void
+    public function getBookMarker() : bool
     {
-        $client = new Client();
-        $request = new Request('GET', config('third-party.api-url'). '/odds/bookmakers', [
-            'X-RapidAPI-Host' => config('third-party.x-rapidapi-host'),
-            'X-RapidAPI-Key' => config('third-party.x-rapidapi-key')
-        ]);
-
-        $response = $client->send($request);
-
-        $result = json_decode($response->getBody(), true);
+        $url = '/odds/bookmakers';
+        $result = $this->hitThirdParty($url);
 
         if (!empty($result['response'])) {
             foreach ($result['response'] as $res) {
@@ -36,55 +29,52 @@ class FootBallApiService {
                     $bookMarker->save();
                 }
             }
+            return true;
         }
+        return false;
 
     }
 
-    public function getLeagues() : void
+    public function getLeagues() : bool
     {
-        $client = new Client();
-        $request = new Request('GET', config('third-party.api-url') . '/leagues', [
-            'X-RapidAPI-Host' => config('third-party.x-rapidapi-host'),
-            'X-RapidAPI-Key' => config('third-party.x-rapidapi-key')
-        ]);
+        $url = '/leagues';
+        $result = $this->hitThirdParty($url);
 
-        $response = $client->send($request);
-
-        $result = json_decode($response->getBody(), true);
 
         if (!empty($result['response'])) {
             foreach ($result['response'] as $res) {
-                $country = Country::where('name', $res->country->name)->first();
+
+                $country = Country::where('name', $res['country']['name'])->first();
 
                 if (empty($country)) {
                     // Create a new BookMarker record
                     $country = Country::create([
-                        'name' => $res->country->name,
-                        "code" => $res->country->code,
-                        'flag' => $res->country->flag
+                        'name' => $res['country']['name'],
+                        "code" => $res['country']['code'],
+                        'flag' => $res['country']['flag']
                     ]);
 
                 }
 
-                $league = League::where('name', $res->league->name)->first();
+                $league = League::where('name', $res['league']['name'])->first();
 
                 if(empty($league)){
 
                     $league = League::create([
-                        'name'=> $res->league->name,
-                        'type' => $res->league->type,
-                        'logo' => $res->league->logo,
+                        'name'=> $res['league']['name'],
+                        'type' => $res['league']['type'],
+                        'logo' => $res['league']['logo'],
                         'country_id' => $country->id,
-                        'league_api_id' => $res->league->id
+                        'league_api_id' => $res['league']['id']
                     ]);
 
-                    foreach ($res->seasons as $season) {
+                    foreach ($res['seasons'] as $season) {
                         # code...
                         Season::create([
-                            'year' => $season->year,
-                            'start' => $season->start,
-                            'end' => $season->end,
-                            'current' => $season->current,
+                            'year' => $season['year'],
+                            'start' => $season['start'],
+                            'end' => $season['end'],
+                            'current' => $season['current'],
                             'league_id' => $league->id
                         ]);
                     }
@@ -92,19 +82,39 @@ class FootBallApiService {
 
 
             }
+            return true;
         }
+
+        return false;
     }
 
 
     public function getFeatureByLeague(int $league_api_id, string $season) : array
     {
-        $client = new Client();
-        $request = new Request('GET', config('third-party.api-url') . '/fixtures?league='. $league_api_id.'&season='. $season, [
-            'X-RapidAPI-Host' => config('third-party.x-rapidapi-host'),
-            'X-RapidAPI-Key' => config('third-party.x-rapidapi-key')
-        ]);
+        $url = '/fixtures?league=' . $league_api_id . '&season=' . $season;
+       $result = $this->hitThirdParty($url);
+       return $result['response'];
+    }
 
-        $response = $client->send($request);
+    public function getFeatureById(int $feature_id): array
+    {
+        $url = '/fixtures?id=' . $feature_id;
+        $result = $this->hitThirdParty($url);
+        return $result['response'];
+    }
+
+
+
+    private function hitThirdParty(string $url) : mixed
+    {
+        $client = new Client();
+
+        $response = $client->request('GET', config('third-party.api-url') . $url, [
+            'headers' => [
+                'X-RapidAPI-Host' => config('third-party.x-rapidapi-host'),
+                'X-RapidAPI-Key' => config('third-party.x-rapidapi-key'),
+            ],
+        ]);
 
         $result = json_decode($response->getBody(), true);
 
