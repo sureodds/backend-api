@@ -26,7 +26,7 @@ class ForeCastMatchRequest extends FormRequest
             'predictions' => ['required', 'array'],
             'predictions.*.fixture_id' => ['required'],
             'predictions.*.book_marker_id' => ['required', 'exists:book_markers,id'],
-            'predictions.*.forecast' => ['required', 'string'],
+            'predictions.*.bet_id' => ['required', 'exists:bets,id'],
             'predictions.*.forecast_odd' => ['nullable', 'numeric'],
             'predictions.*.prediction_value' => ['required', 'string'],
             'predictions.*.prediction_odd' => ['required', 'numeric'],

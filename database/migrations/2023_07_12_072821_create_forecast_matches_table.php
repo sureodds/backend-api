@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->index()->unique();
             $table->bigInteger('fixture_id');
             $table->foreignUuid('book_marker_id')->constrained('book_markers')->cascadeOnDelete();
-            $table->string('forecast');
+            $table->foreignUuid('bet_id')->constrained('bets')->cascadeOnDelete();
             $table->double('forecast_odd',8,2)->nullable();
             $table->string('prediction_value');
             $table->double('prediction_odd',8,2)->nullable();

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BadgeController;
+use App\Http\Controllers\BetController;
 use App\Http\Controllers\BookMarkerController;
 use App\Http\Controllers\ForecastMatchController;
 use App\Http\Controllers\LeagueController;
@@ -73,6 +74,8 @@ Route::prefix('v1')->group(function () {
         Route::resource('user.bookMarker', UserBookMarkerController::class)->shallow()->only(['index', 'store','destroy']);
         Route::apiResource('leagues', LeagueController::class);
         Route::apiResource('forecast-match', ForecastMatchController::class);
+        Route::apiResource('bets', BetController::class);
+
 
         Route::prefix('feature')->group(function () {
             Route::get('features-by-league/{id}', [LeagueController::class, 'getFixturesByLeagueId'])->name('getFixturesByLeagueId');
@@ -81,6 +84,8 @@ Route::prefix('v1')->group(function () {
             Route::get('populateBookMarker', [TriggerThiryPartyController::class, 'populateBookMarker'])->name('populateBookMarker');
             Route::get('populateLeague', [TriggerThiryPartyController::class, 'populateLeague'])->name('populateLeague');
             Route::get('getFeatureById/{id}', [TriggerThiryPartyController::class, 'getFeatureById'])->name('getFeatureById');
+            Route::get('populateBet', [TriggerThiryPartyController::class, 'populateBet'])->name('populateBet');
+
         });
     });
  });
