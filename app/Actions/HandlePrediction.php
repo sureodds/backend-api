@@ -2,27 +2,69 @@
 
 namespace  App\Actions;
 
+use App\Services\FootBallApiService;
 
 class HandlePrediction {
 
+    public FootBallApiService $footBallService;
 
+    public function __construct()
+    {
+        $this->footBallService = new FootBallApiService();
+    }
     // Function to handle "Match Winner" forecast
-    public function handleMatchWinnerForecast(mixed $forcast) {
+    public function handleMatchWinnerForecast(mixed $forcast) : bool
+    {
         // Get the actual winner of the match from your data or API.
         // For demonstration purposes, I'll use a sample value here.
-        $actualWinner = 'Home Team';
+        $soccer_record = $this->footBallService->getFeatureById($forcast->fixture_id);
+        $result = false;
+        switch ($forcast->prediction_value) {
+            case 'home':
+                # code...
+                if($soccer_record['goals']['home'] > $soccer_record['goals']['away']){
+                     $result = true;
+                }
+                break;
 
-        // Compare the user's forecast with the actual result.
-      /*   if ($userForecast === $actualWinner) {
-            // If the user's forecast is correct, add 3 points to the user.
-            addPointsToUser($userId, 3);
-        } */
+            default:
+                    # code...
+                if ($soccer_record['goals']['away'] > $soccer_record['goals']['home']) {
+                    return true;
+                }
+                break;
+        }
+
+        return $result;
+
     }
 
 
     public function handleSecondHalfWinner(mixed $forcast)
     {
         // Bet on the team that will win the second half of the match.
+        $soccer_record = $this->footBallService->getFeatureById($forcast->fixture_id);
+        $first_half = $soccer_record['score']['halftime'];
+        $fulltime = $soccer_record['score']['fulltime'];
+        $result = false;
+
+        switch ($forcast->prediction_value) {
+            case 'home':
+                # code...
+                if (($fulltime['home'] - $first_half['home']) > $first_half['home']) {
+                    $result = true;
+                }
+                break;
+
+            default:
+                # code...
+                if (($fulltime['away'] - $first_half['away']) > $first_half['away']) {
+                    $result = true;
+                }
+                break;
+        }
+
+        return $result;
     }
     public function handleAsianHandicap(mixed $forcast)
     {
@@ -32,6 +74,28 @@ class HandlePrediction {
     public function handleGoalsOverUnder(mixed $forcast)
     {
         // Bet on the total number of goals scored to be over or under a specific value.
+        $soccer_record = $this->footBallService->getFeatureById($forcast->fixture_id);
+        $first_half = $soccer_record['score']['halftime'];
+        $fulltime = $soccer_record['score']['fulltime'];
+        $result = false;
+
+        switch ($forcast->prediction_value) {
+            case 'home':
+                # code...
+                if (($fulltime['home'] - $first_half['home']) > $first_half['home']) {
+                    $result = true;
+                }
+                break;
+
+            default:
+                # code...
+                if (($fulltime['away'] - $first_half['away']) > $first_half['away']) {
+                    $result = true;
+                }
+                break;
+        }
+
+        return $result;
     }
     public function handleGoalsOverUnderFirstHalf(mixed $forcast)
     {

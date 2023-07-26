@@ -8,7 +8,9 @@ use App\Models\Bet;
 class CompareForcast {
 
     public HandlePrediction $predictions;
-    public function __construct()
+    public function __construct(
+        
+    )
     {
       $this->predictions = new HandlePrediction();
     }
@@ -17,7 +19,7 @@ class CompareForcast {
     {
         $bet = Bet::find($forecast->bet_id);
         $result = false;
-        
+
         switch ($bet->name) {
             case 'Match Winner':
                 # code...

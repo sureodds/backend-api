@@ -144,8 +144,20 @@ class FootBallApiService {
         }
         return true;
 
-
     }
 
+    public function fetchFixtureEvent(int $fixture_id) : array
+    {
+        $url = 'fixtures/events?fixture=' . $fixture_id;
+        $result = $this->rapidApi->hitThirdParty($url);
+        return $result['response'];
+    }
+
+    public function fetchFixtureStatistics(int $fixture_id): array
+    {
+        $url = '/fixtures/statistics?fixture=' . $fixture_id;
+        $result = $this->rapidApi->hitThirdParty($url);
+        return $result['response'];
+    }
 
 }
