@@ -3,7 +3,6 @@ set -e
 echo "Deploying application ..."
 # Enter maintenance mode
  # Update codebase
-    git reset --hard HEAD
     git checkout main
     git pull origin main
     # Install dependencies based on lock file
