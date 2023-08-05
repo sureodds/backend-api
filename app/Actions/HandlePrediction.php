@@ -100,25 +100,173 @@ class HandlePrediction {
     public function handleGoalsOverUnderFirstHalf(mixed $forcast)
     {
         //Bet on the total number of goals scored in the first half to be over or under a specific value.
+        $soccer_record = $this->footBallService->getFeatureById($forcast->fixture_id);
+
+        $first_half = $soccer_record['score']['halftime'];
+        $result = false;
+
+        switch ($forcast->prediction_value) {
+            case 'over':
+                # code...
+                if (($first_half['home'] + $first_half['away']) > $forcast->prediction_value) {
+                    $result = true;
+                }
+                break;
+
+            default:
+                # code...
+                if (($first_half['home'] + $first_half['away']) < $forcast->prediction_value) {
+                    $result = true;
+                }
+                break;
+        }
+
+        return $result;
+
     }
     public function handleHTFTDouble(mixed $forcast)
     {
          // Bet on both the half-time and full-time results of a match.
+
+         $soccer_record = $this->footBallService->getFeatureById($forcast->fixture_id);
+
+            $first_half = $soccer_record['score']['halftime'];
+            $fulltime = $soccer_record['score']['fulltime'];
+            $result = false;
+
+            switch ($forcast->prediction_value) {
+                case 'home':
+                    # code...
+                    if (($fulltime['home'] - $first_half['home']) > $first_half['home']) {
+                        $result = true;
+                    }
+                    break;
+
+                default:
+                    # code...
+                    if (($fulltime['away'] - $first_half['away']) > $first_half['away']) {
+                        $result = true;
+                    }
+                    break;
+            }
+
+            return $result;
     }
     public function handleBothTeamsScore(mixed $forcast)
     {
+        // Bet on both teams to score at least one goal each in the match.
+        $soccer_record = $this->footBallService->getFeatureById($forcast->fixture_id);
+
+        $first_half = $soccer_record['score']['halftime'];
+        $fulltime = $soccer_record['score']['fulltime'];
+        $result = false;
+
+        switch ($forcast->prediction_value) {
+            case 'yes':
+                # code...
+                if (($fulltime['home'] > 0) && ($fulltime['away'] > 0)) {
+                    $result = true;
+                }
+                break;
+
+            default:
+                # code...
+                if (($fulltime['home'] == 0) || ($fulltime['away'] == 0)) {
+                    $result = true;
+                }
+                break;
+        }
+
+        return $result;
     }
     public function handleHandicapResult(mixed $forcast)
     {
+        // Bet on a team to win with a virtual head start or deficit.
+        $soccer_record = $this->footBallService->getFeatureById($forcast->fixture_id);
+
+        $first_half = $soccer_record['score']['halftime'];
+        $fulltime = $soccer_record['score']['fulltime'];
+        $result = false;
+
+        switch ($forcast->prediction_value) {
+            case 'home':
+                # code...
+                if (($fulltime['home'] - $first_half['home']) > $first_half['home']) {
+                    $result = true;
+                }
+                break;
+
+            default:
+                # code...
+                if (($fulltime['away'] - $first_half['away']) > $first_half['away']) {
+                    $result = true;
+                }
+                break;
+        }
+
+        return $result;
     }
-    public function handleExactScore($forecast)
+    public function handleExactScore(mixed $forecast)
     {
+        // Bet on the exact score of the match.
+        $soccer_record = $this->footBallService->getFeatureById($forecast->fixture_id);
+
+        $first_half = $soccer_record['score']['halftime'];
+        $fulltime = $soccer_record['score']['fulltime'];
+        $result = false;
+
+        switch ($forecast->prediction_value) {
+            case 'home':
+                # code...
+                if (($fulltime['home'] - $first_half['home']) > $first_half['home']) {
+                    $result = true;
+                }
+                break;
+
+            default:
+                # code...
+                if (($fulltime['away'] - $first_half['away']) > $first_half['away']) {
+                    $result = true;
+                }
+                break;
+        }
+
+        return $result;
     }
     public function handleHighestScoringHalf($forcast)
     {
+        // Bet on the half with the highest number of goals scored.
+        $soccer_record = $this->footBallService->getFeatureById($forcast->fixture_id);
+
+        $first_half = $soccer_record['score']['halftime'];
+        $fulltime = $soccer_record['score']['fulltime'];
+        $result = false;
+
+        switch ($forcast->prediction_value) {
+            case 'home':
+                # code...
+                if (($fulltime['home'] - $first_half['home']) > $first_half['home']) {
+                    $result = true;
+                }
+                break;
+
+            default:
+                # code...
+                if (($fulltime['away'] - $first_half['away']) > $first_half['away']) {
+                    $result = true;
+                }
+                break;
+        }
+
+        return $result;
     }
-    public function handleDoubleChance()
+    public function handleDoubleChance(mixed $forecast)
     {
+        // Bet on two outcomes from a possible three.
+
+        $soccer_record = $this->footBallService->getFeatureById($forecast->fixture_id);
+        
+
     }
 
     public function handleFirstHalfWinner()
