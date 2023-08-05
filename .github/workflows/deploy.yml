@@ -41,5 +41,5 @@ jobs:
         username: "ubuntu"
         script: |
           cd /var/www/sureodds-backend/
-          ./prod_server_deploy.sh
+           prod_server_deploy.sh
 
