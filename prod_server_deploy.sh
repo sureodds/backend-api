@@ -3,7 +3,7 @@ set -e
 echo "Deploying application ..."
 # Enter maintenance mode
  # Update codebase
-    git checkout main
+    
     git pull origin main
     # Install dependencies based on lock file
     composer install --no-interaction --prefer-dist --optimize-autoloader --ignore-platform-reqs
