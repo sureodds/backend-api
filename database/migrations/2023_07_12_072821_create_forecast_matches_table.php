@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignUuid('bet_id')->constrained('bets')->cascadeOnDelete();
             $table->double('forecast_odd',8,2)->nullable();
             $table->string('prediction_value');
+            $table->string('prediction_score')->nullable();
             $table->double('prediction_odd',8,2)->nullable();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->boolean('result')->nullable();

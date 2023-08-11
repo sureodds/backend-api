@@ -9,13 +9,13 @@ class CompareForcast {
 
     public HandlePrediction $predictions;
     public function __construct(
-        
+
     )
     {
       $this->predictions = new HandlePrediction();
     }
 
-    public function __invoke(mixed $forecast) : bool
+    public function __invoke(mixed $forecast) : mixed
     {
         $bet = Bet::find($forecast->bet_id);
         $result = false;

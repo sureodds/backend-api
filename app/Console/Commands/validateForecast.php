@@ -32,7 +32,7 @@ class validateForecast extends Command
         $forecasts = ForecastMatch::whereNull('result')->get();
 
         $forecasts->each(function ($forecast) {
-            (new ValidateForecastController)->validateForecast($forecast);
+            ValidateForecastController::validateForecast($forecast);
         });
 
         return Command::SUCCESS;

@@ -11,23 +11,26 @@ use PhpParser\Node\Expr\Cast\Double;
 class ValidateForecastController extends Controller
 {
     //
-    public function __invoke()
+    public function rateForecast()
     {
         $forecasts = ForecastMatch::whereNull('result')->get();
 
         $forecasts->each(function($forecast){
-            $this->validateForecast($forecast);
+            static::validateForecast($forecast);
         });
     }
 
 
-    private function validateForecast(mixed $forecast) : void
+    public static function validateForecast(mixed $forecast) : void
     {
 
         $compare_forecast = new CompareForcast();
         $result =  $compare_forecast($forecast);
         $forecast->update(['result' => $result]);
-        Formular::combineUserPoints($result,$forecast->user_id);
+
+        if(!empty($result)){
+            Formular::combineUserPoints($result, $forecast->user_id);
+        }
 
     }
 

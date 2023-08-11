@@ -12,6 +12,7 @@ class ForecastMatch extends Model
     use HasFactory, HasUuids;
 
     protected $fillable = [
+        
         'fixture_id',
         'book_marker_id' ,
         'bet_id',

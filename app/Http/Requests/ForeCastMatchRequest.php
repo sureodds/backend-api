@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\PredictionScore;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ForeCastMatchRequest extends FormRequest
@@ -28,7 +29,10 @@ class ForeCastMatchRequest extends FormRequest
             'predictions.*.book_marker_id' => ['required', 'exists:book_markers,id'],
             'predictions.*.bet_id' => ['required', 'exists:bets,id'],
             'predictions.*.forecast_odd' => ['nullable', 'numeric'],
+            // get the value from the enum BetOdds
+
             'predictions.*.prediction_value' => ['required', 'string'],
+            'predictions.*.prediction_score' => ['required',],
             'predictions.*.prediction_odd' => ['required', 'numeric'],
             'predictions.*.is_submitted' => ['required','boolean'],
             'predictions.*.code' => ['nullable', 'boolean']
