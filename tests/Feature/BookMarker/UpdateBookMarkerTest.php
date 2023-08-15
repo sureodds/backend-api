@@ -16,7 +16,7 @@ it('has bookmarker/updatebookmarker page', function () {
     ];
     $badges = BookMarker::factory()->create();
 
-    $response = $this->patch(route('bookMarker.update', [
+    $response = $this->patch(route('bookMarkers.update', [
         'bookMarker' => $badges
     ]), $data);
 

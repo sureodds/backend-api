@@ -23,6 +23,7 @@ class LeagueController extends Controller
     {
         $this->footballService = new FootBallApiService();
     }
+
     /**
      * Display a listing of the resource.
      */
@@ -46,7 +47,6 @@ class LeagueController extends Controller
 
     }
 
-
     /**
      * Display the specified resource.
      */
@@ -54,12 +54,11 @@ class LeagueController extends Controller
     {
         //
         return $this->success(
-            message: "League deleted successfully",
+            message: "League retrieved successfully",
             data: new LeagueResource($league),
             status: HttpStatusCode::SUCCESSFUL->value
         );
     }
-
 
 
     /**
@@ -89,7 +88,7 @@ class LeagueController extends Controller
             try {
                 $response = $this->footballService->getFeatureByLeague($league->league_api_id, $season->year);
 
-                
+
                 $page = request('page', 1);
                 $perPage = 10; // Adjust the number of items per page as needed
                 $totalItems = count($response);
@@ -103,6 +102,7 @@ class LeagueController extends Controller
                 );
 
                 return $paginator;
+                //@codeCoverageIgnoreStart
             } catch (\Throwable $th) {
                 return null;
             }
@@ -114,9 +114,9 @@ class LeagueController extends Controller
                 status: HttpStatusCode::BAD_REQUEST->value
             );
         }
-
+        //@codeCoverageIgnoreEnd
         return $this->success(
-            message: "League features fetched successfully",
+            message: "Fixtures retrieved successfully",
             data: $paginatedResponse,
             status: HttpStatusCode::SUCCESSFUL->value
         );

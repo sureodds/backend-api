@@ -75,7 +75,7 @@ class TriggerThiryPartyController extends Controller
     {
         $response = $this->footballService->getFeatureById($feature_id);
 
-        return $response[0];
+        return (!empty($response)) ?  $response[0] : $response = [];
 
     }
 

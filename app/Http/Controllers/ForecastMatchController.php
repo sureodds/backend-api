@@ -36,7 +36,6 @@ class ForecastMatchController extends Controller
     }
 
 
-
     /**
      * Store a newly created resource in storage.
      */
@@ -52,12 +51,12 @@ class ForecastMatchController extends Controller
             ]);
         });
 
+
         return $this->success(
             message: "Forecast saved successfully",
             data: ForeCastMatchResource::collection($predictions),
             status: HttpStatusCode::SUCCESSFUL->value
         );
-
 
     }
 
@@ -76,7 +75,6 @@ class ForecastMatchController extends Controller
     }
 
 
-
     /**
      * Update the specified resource in storage.
      */
@@ -85,7 +83,7 @@ class ForecastMatchController extends Controller
         //
         $forecastMatch->update($request->validated());
         return $this->success(
-            message: "Bookmarker updated successfully",
+            message: "Forecast updated successfully",
             data: new  ForeCastMatchResource($forecastMatch),
             status: 200
         );

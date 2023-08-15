@@ -20,6 +20,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException as ValidationValidationException;
 
+use Laravel\Passport\RefreshTokenRepository;
+use Laravel\Passport\Token;
+use Laravel\Passport\TokenRepository;
+
+
 class AuthController extends Controller
 {
     //
@@ -106,6 +111,7 @@ class AuthController extends Controller
 
     public function verifyForgetonPasswordOtp(VerifyOtpRequest $request): JsonResponse
     {
+
         /** @var EmailVerification */
         $isValidOtp = EmailVerification::firstWhere(['otp' => $request->otp]);
 
@@ -125,7 +131,7 @@ class AuthController extends Controller
     public function resetPasword(PasswordResetRequest $request): JsonResponse
     {
         /** @var User @user */
-        $user = User::where('email', $request->email)->first()?->withoutRelations();
+        $user = User::where('email', $request->email)->first();
 
         $user->fill(['password' => Hash::make($request->password)]);
         $user->save();
@@ -152,7 +158,6 @@ class AuthController extends Controller
 
         // Revoke all of the token's refresh tokens...
         $refreshTokenRepository->revokeRefreshTokensByAccessTokenId($token->id);
-
         return response()->json(['message' => 'Logged out successfully']);
     }
 }

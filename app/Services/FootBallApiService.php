@@ -112,6 +112,13 @@ class FootBallApiService {
         return $result['response'];
     }
 
+    public function getFeatureByIdWithEvent(int $feature_id): array
+    {
+        $url = 'fixtures/events?fixture=' . $feature_id;
+        $result = $this->rapidApi->hitThirdParty($url);
+        return $result['response'];
+    }
+
     public function validateForecast(int $fixture_id, string $date) : array
     {
         $url = '/odds?date='. $date .'&fixture='. $fixture_id;

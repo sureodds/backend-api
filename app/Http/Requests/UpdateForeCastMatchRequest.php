@@ -25,7 +25,7 @@ class UpdateForeCastMatchRequest extends FormRequest
             //
             'fixture_id' => ['nullable'],
             'book_marker_id' => ['nullable', 'exists:book_markers,id'],
-            'bet_id' => ['nullable', 'exists:bets, id'],
+            'bet_id' => ['nullable', 'exists:bets,id'],
             'forecast_odd' => ['nullable', 'numeric'],
             'prediction_value' => ['nullable', 'string'],
             'prediction_odd' => ['nullable', 'numeric'],

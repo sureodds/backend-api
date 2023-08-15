@@ -11,7 +11,7 @@ class ComfirmEmailRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,7 @@ class ComfirmEmailRequest extends FormRequest
     {
         return [
             //
+            'email' => ['required', 'email', 'exists:users,email'],
         ];
     }
 }

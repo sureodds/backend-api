@@ -16,15 +16,15 @@ class ForeCastMatchResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $feature = (new TriggerThiryPartyController)->getFeatureById($this->fixture_id);
+        $fixture = (new TriggerThiryPartyController)->getFeatureById($this->fixture_id);
 
         return [
             'type' => 'prediction',
             'id' => $this->id,
             'attributes' => [
-                'date' => $feature['fixture']['date'],
-                'kick_off' => date('H:i', $feature['fixture']['timestamp']),
-                'match'=> $feature['teams']['home']['name']  .' VS '. $feature['teams']['away']['name'],
+                'date' => (!empty($fixture)) ? $fixture['fixture']['date'] : null,
+                'kick_off' => (!empty($fixture)) ?  date('H:i', $fixture['fixture']['timestamp']) : null,
+                'match'=> (!empty($fixture)) ?  $fixture['teams']['home']['name']  .' VS '. $fixture['teams']['away']['name'] : null,
                 'forecast' => $this->forecast,
                 'prediction_value' => $this->prediction_value,
                 'prediction_odd' => $this->prediction_odd,

@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\HttpStatusCode;
 use App\Http\Requests\CreateBookMarkerRequest;
 use App\Http\Requests\UpdateBookMarkerRequest;
 use App\Http\Resources\BookMarkerResource;
 use App\Models\BookMarker;
-use App\Services\FootBallApiService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+
 
 class BookMarkerController extends Controller
 {
-  
+
     /**
      * Display a listing of the resource.
      */
@@ -43,7 +40,6 @@ class BookMarkerController extends Controller
         if ($request->has('logo') && !empty($request->file('logo'))) {
             $bookMarker->addMediaFromRequest('logo')->toMediaCollection('logo');
         }
-
 
         return $this->success(
             message: "BookMarker created successfully",
@@ -87,11 +83,13 @@ class BookMarkerController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
      */
-    public function destroy(BookMarker $bookMarker): JsonResponse
+    public function destroy(string $bookMarker): JsonResponse
     {
-        //
+        $bookMarker = BookMarker::find($bookMarker);
         $bookMarker->delete();
+
         return $this->success(
             message: "BookMarker deleted successfully",
             data: new BookMarkerResource($bookMarker),
