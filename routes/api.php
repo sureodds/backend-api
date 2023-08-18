@@ -5,6 +5,7 @@ use App\Http\Controllers\BadgeController;
 use App\Http\Controllers\BetController;
 use App\Http\Controllers\BookMarkerController;
 use App\Http\Controllers\ForecastMatchController;
+use App\Http\Controllers\LeadersDashboardController;
 use App\Http\Controllers\LeagueController;
 use App\Http\Controllers\TriggerThiryPartyController;
 use App\Http\Controllers\UserBookMarkerController;
@@ -90,6 +91,7 @@ Route::prefix('v1')->group(function () {
         });
 
         Route::get('rate-forecast', [ValidateForecastController::class, 'rateForecast'])->name('rate-Forecast');
+        Route::get('leaders-dashboard', [LeadersDashboardController::class, 'leadersDashboard'])->name('leaders-dashboard');
 
     });
  });
