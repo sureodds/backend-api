@@ -14,6 +14,14 @@ jobs:
 
     steps:
 
+    - name: Execute type checking
+      run: vendor/bin/phpstan analyse
+
+    - name: Run tests
+      run: ./vendor/bin/pest --parallel --coverage --min=50
+      env:
+          APP_ENV: testing
+
     - name: Checkout
       uses: actions/checkout@v2
     - name: Deployment
