@@ -22,7 +22,7 @@ jobs:
         host: ${{ secrets.EC2_PUBLIC_IP }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         passphrase: ${{ secrets.SSH_PASSPHASE }}
-        username: "root"
+        username: "ubuntu"
         script: |
           cd /var/www/sureodds_backend/staging
           ./prod_server_deploy.sh
