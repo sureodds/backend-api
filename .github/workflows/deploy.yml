@@ -24,6 +24,6 @@ jobs:
         passphrase: ${{ secrets.SSH_PASSPHASE }}
         username: "ubuntu"
         script: |
-          cd /var/www/sureodds-backend/
+          cd /var/www/sureodds_backend/staging
           ./prod_server_deploy.sh
 
