@@ -20,7 +20,7 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.EC2_PUBLIC_IP }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        key: ${{ secrets.SSH_PRIVATE_KEY_2 }}
         passphrase: ${{ secrets.SSH_PASSPHASE }}
         username: "ubuntu"
         script: |
