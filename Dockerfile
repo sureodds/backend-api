@@ -43,7 +43,7 @@ ENV REAL_IP_HEADER 1
 EXPOSE 9000
 
 # Command to start PHP-FPM
-CMD [["php-fpm","/start.sh"]]
+CMD ["/start.sh"]
 
 
 
