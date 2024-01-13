@@ -20,11 +20,10 @@ RUN apt-get update && \
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install PHP extensions and other dependencies
-RUN composer install --no-interaction --optimize-autoloader --no-dev
+
 
 # Set permissions for Laravel
-RUN chown -R www-data:www-data storage bootstrap/cache
+# RUN chown -R www-data:www-data storage bootstrap/cache
 
 # Set environment variables
 ENV APP_ENV production
