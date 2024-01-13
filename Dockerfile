@@ -38,8 +38,6 @@ ENV PHP_ERRORS_STDERR 1
 ENV RUN_SCRIPTS 1
 ENV REAL_IP_HEADER 1
 
-# Expose port 9000 for PHP-FPM
-EXPOSE 9000
 
 # Command to start PHP-FPM
 CMD ["/start.sh"]
