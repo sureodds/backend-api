@@ -14,7 +14,7 @@ it('has bookmarker/createbookmarker page', function () {
         'link' => fake()->url()
     ];
 
-    $response = $this->postJson(route('bookMarker.store'), $data);
+    $response = $this->postJson(route('bookMarkers.store'), $data);
 
     $response->assertStatus(201);
 

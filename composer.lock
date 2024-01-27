@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "124e6077ee89311742c6ae536b5ec6de",
     "packages": [
         {
@@ -38,6 +39,37 @@
                 ],
                 "psr-4": {
                     "Amp\\": "src"
+=======
+    "content-hash": "2bc8d420417fc8645d2dbee42ccb96ba",
+    "packages": [
+        {
+            "name": "archtechx/enums",
+            "version": "v0.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/archtechx/enums.git",
+                "reference": "475f45e682b0771253707f9403b704759a08da5f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/archtechx/enums/zipball/475f45e682b0771253707f9403b704759a08da5f",
+                "reference": "475f45e682b0771253707f9403b704759a08da5f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "nunomaduro/larastan": "^1.0|^2.4",
+                "orchestra/testbench": "^6.9|^7.0|^8.0",
+                "pestphp/pest": "^1.2|^2.0",
+                "pestphp/pest-plugin-laravel": "^1.0|^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ArchTech\\Enums\\": "src/"
+>>>>>>> d1af62c743ede4323d4d643acccd70722e0ff2a2
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -46,6 +78,7 @@
             ],
             "authors": [
                 {
+<<<<<<< HEAD
                     "name": "Aaron Piotrowski",
                     "email": "aaron@trowski.com"
                 },
@@ -863,6 +896,18 @@
                 }
             ],
             "time": "2023-01-09T22:29:20+00:00"
+=======
+                    "name": "Samuel Štancl",
+                    "email": "samuel@archte.ch"
+                }
+            ],
+            "description": "Helpers for making PHP enums more lovable.",
+            "support": {
+                "issues": "https://github.com/archtechx/enums/issues",
+                "source": "https://github.com/archtechx/enums/tree/v0.3.2"
+            },
+            "time": "2023-02-15T13:05:41+00:00"
+>>>>>>> d1af62c743ede4323d4d643acccd70722e0ff2a2
         },
         {
             "name": "brick/math",
@@ -3521,6 +3566,153 @@
             "time": "2023-11-24T15:40:42+00:00"
         },
         {
+            "name": "lorisleiva/laravel-actions",
+            "version": "v2.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lorisleiva/laravel-actions.git",
+                "reference": "23439c9294d9bfc668f28f849c5df4ba88bdc4cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lorisleiva/laravel-actions/zipball/23439c9294d9bfc668f28f849c5df4ba88bdc4cd",
+                "reference": "23439c9294d9bfc668f28f849c5df4ba88bdc4cd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "9.0 - 9.34 || ^9.36 || ^10.0",
+                "lorisleiva/lody": "^0.4",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^8.5",
+                "pestphp/pest": "^1.23",
+                "phpunit/phpunit": "^9.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Lorisleiva\\Actions\\ActionServiceProvider"
+                    ],
+                    "aliases": {
+                        "Action": "Lorisleiva\\Actions\\Facades\\Actions"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lorisleiva\\Actions\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Loris Leiva",
+                    "email": "loris.leiva@gmail.com",
+                    "homepage": "https://lorisleiva.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel components that take care of one specific task",
+            "homepage": "https://github.com/lorisleiva/laravel-actions",
+            "keywords": [
+                "action",
+                "command",
+                "component",
+                "controller",
+                "job",
+                "laravel",
+                "object"
+            ],
+            "support": {
+                "issues": "https://github.com/lorisleiva/laravel-actions/issues",
+                "source": "https://github.com/lorisleiva/laravel-actions/tree/v2.6.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/lorisleiva",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-06-11T17:25:21+00:00"
+        },
+        {
+            "name": "lorisleiva/lody",
+            "version": "v0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lorisleiva/lody.git",
+                "reference": "1a43e8e423f3b2b64119542bc44a2071208fae16"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lorisleiva/lody/zipball/1a43e8e423f3b2b64119542bc44a2071208fae16",
+                "reference": "1a43e8e423f3b2b64119542bc44a2071208fae16",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.0|^9.0|^10.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^8.0",
+                "pestphp/pest": "^1.20.0",
+                "phpunit/phpunit": "^9.5.10"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Lorisleiva\\Lody\\LodyServiceProvider"
+                    ],
+                    "aliases": {
+                        "Lody": "Lorisleiva\\Lody\\Lody"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lorisleiva\\Lody\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Loris Leiva",
+                    "email": "loris.leiva@gmail.com",
+                    "homepage": "https://lorisleiva.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Load files and classes as lazy collections in Laravel.",
+            "homepage": "https://github.com/lorisleiva/lody",
+            "keywords": [
+                "classes",
+                "collection",
+                "files",
+                "laravel",
+                "load"
+            ],
+            "support": {
+                "issues": "https://github.com/lorisleiva/lody/issues",
+                "source": "https://github.com/lorisleiva/lody/tree/v0.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/lorisleiva",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-02-05T15:03:45+00:00"
+        },
+        {
             "name": "maennchen/zipstream-php",
             "version": "3.1.0",
             "source": {
@@ -5100,8 +5292,89 @@
             "time": "2023-11-08T05:53:05+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "revolt/event-loop",
             "version": "v1.0.6",
+=======
+            "name": "spatie/enum",
+            "version": "3.13.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/enum.git",
+                "reference": "f1a0f464ba909491a53e60a955ce84ad7cd93a2c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/enum/zipball/f1a0f464ba909491a53e60a955ce84ad7cd93a2c",
+                "reference": "f1a0f464ba909491a53e60a955ce84ad7cd93a2c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "fakerphp/faker": "^1.9.1",
+                "larapack/dd": "^1.1",
+                "phpunit/phpunit": "^9.0",
+                "vimeo/psalm": "^4.3"
+            },
+            "suggest": {
+                "fakerphp/faker": "To use the enum faker provider",
+                "phpunit/phpunit": "To use the enum assertions"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Enum\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brent Roose",
+                    "email": "brent@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Tom Witkowski",
+                    "email": "dev@gummibeer.de",
+                    "homepage": "https://gummibeer.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP Enums",
+            "homepage": "https://github.com/spatie/enum",
+            "keywords": [
+                "enum",
+                "enumerable",
+                "spatie"
+            ],
+            "support": {
+                "docs": "https://docs.spatie.be/enum",
+                "issues": "https://github.com/spatie/enum/issues",
+                "source": "https://github.com/spatie/enum"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-04-22T08:51:55+00:00"
+        },
+        {
+            "name": "spatie/image",
+            "version": "2.2.6",
+>>>>>>> d1af62c743ede4323d4d643acccd70722e0ff2a2
             "source": {
                 "type": "git",
                 "url": "https://github.com/revoltphp/event-loop.git",
@@ -9674,6 +9947,125 @@
             "time": "2022-02-21T01:04:05+00:00"
         },
         {
+<<<<<<< HEAD
+=======
+            "name": "phpdocumentor/reflection",
+            "version": "5.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpDocumentor/Reflection.git",
+                "reference": "41cb981a699f757dc5bd75d99b277ffa1097e4aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpDocumentor/Reflection/zipball/41cb981a699f757dc5bd75d99b277ffa1097e4aa",
+                "reference": "41cb981a699f757dc5bd75d99b277ffa1097e4aa",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "^4.13",
+                "php": "^7.4|8.0.*|8.1.*",
+                "phpdocumentor/reflection-common": "^2.1",
+                "phpdocumentor/reflection-docblock": "^5",
+                "phpdocumentor/type-resolver": "^1.2",
+                "webmozart/assert": "^1.7"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "~1.2",
+                "mockery/mockery": "~1.5.0",
+                "phpspec/prophecy-phpunit": "^2.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan": "^1.8",
+                "phpstan/phpstan-php-parser": "^1.1",
+                "phpstan/phpstan-webmozart-assert": "^1.2",
+                "phpunit/phpunit": "^9.5",
+                "rector/rector": "^0.15.0",
+                "vimeo/psalm": "^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-5.x": "5.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "phpDocumentor\\": "src/phpDocumentor"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Reflection library to do Static Analysis for PHP Projects",
+            "homepage": "http://www.phpdoc.org",
+            "keywords": [
+                "phpDocumentor",
+                "phpdoc",
+                "reflection",
+                "static analysis"
+            ],
+            "support": {
+                "issues": "https://github.com/phpDocumentor/Reflection/issues",
+                "source": "https://github.com/phpDocumentor/Reflection/tree/5.3.1"
+            },
+            "time": "2022-12-07T20:59:44+00:00"
+        },
+        {
+            "name": "phpdocumentor/reflection-common",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpDocumentor/ReflectionCommon.git",
+                "reference": "1d01c49d4ed62f25aa84a747ad35d5a16924662b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionCommon/zipball/1d01c49d4ed62f25aa84a747ad35d5a16924662b",
+                "reference": "1d01c49d4ed62f25aa84a747ad35d5a16924662b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "phpDocumentor\\Reflection\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jaap van Otterdijk",
+                    "email": "opensource@ijaap.nl"
+                }
+            ],
+            "description": "Common reflection classes used by phpdocumentor to reflect the code structure",
+            "homepage": "http://www.phpdoc.org",
+            "keywords": [
+                "FQSEN",
+                "phpDocumentor",
+                "phpdoc",
+                "reflection",
+                "static analysis"
+            ],
+            "support": {
+                "issues": "https://github.com/phpDocumentor/ReflectionCommon/issues",
+                "source": "https://github.com/phpDocumentor/ReflectionCommon/tree/2.x"
+            },
+            "time": "2020-06-27T09:03:43+00:00"
+        },
+        {
+>>>>>>> d1af62c743ede4323d4d643acccd70722e0ff2a2
             "name": "phpdocumentor/reflection-docblock",
             "version": "5.3.0",
             "source": {
@@ -10301,6 +10693,60 @@
                 }
             ],
             "time": "2024-01-22T14:35:40+00:00"
+        },
+        {
+            "name": "riimu/kit-pathjoin",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Riimu/Kit-PathJoin.git",
+                "reference": "8ad2656c79527dba9f7f20e1229dcd38abfe8cee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Riimu/Kit-PathJoin/zipball/8ad2656c79527dba9f7f20e1229dcd38abfe8cee",
+                "reference": "8ad2656c79527dba9f7f20e1229dcd38abfe8cee",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.3",
+                "phpunit/phpunit": "^5.7 || ^6.2",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Riimu\\Kit\\PathJoin\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Riikka Kalliomäki",
+                    "email": "riikka.kalliomaki@gmail.com",
+                    "homepage": "http://riimu.net"
+                }
+            ],
+            "description": "Cross-platform library for normalizing and joining file system paths",
+            "homepage": "http://kit.riimu.net",
+            "keywords": [
+                "file",
+                "join",
+                "normalize",
+                "path",
+                "system"
+            ],
+            "support": {
+                "issues": "https://github.com/Riimu/Kit-PathJoin/issues",
+                "source": "https://github.com/Riimu/Kit-PathJoin/tree/master"
+            },
+            "time": "2017-07-09T14:41:04+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -11702,7 +12148,86 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-11-20T00:12:19+00:00"
+=======
+            "time": "2021-07-28T10:34:58+00:00"
+        },
+        {
+            "name": "wulfheart/laravel-actions-ide-helper",
+            "version": "0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Wulfheart/laravel-actions-ide-helper.git",
+                "reference": "4e23738b3aa53704da14737dab5bf74d56e21afb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Wulfheart/laravel-actions-ide-helper/zipball/4e23738b3aa53704da14737dab5bf74d56e21afb",
+                "reference": "4e23738b3aa53704da14737dab5bf74d56e21afb",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^10.0",
+                "lorisleiva/laravel-actions": "^2.3",
+                "lorisleiva/lody": "^0.4.0",
+                "php": "^8.1",
+                "phpdocumentor/reflection": "^5.1",
+                "riimu/kit-pathjoin": "^1.2",
+                "spatie/laravel-package-tools": "^1.14"
+            },
+            "require-dev": {
+                "brianium/paratest": "^6.8",
+                "nunomaduro/collision": "^6.1",
+                "orchestra/testbench": "^8.0",
+                "pestphp/pest": "^1.22",
+                "phpunit/phpunit": "^9.5.10",
+                "spatie/invade": "^1.1",
+                "spatie/laravel-ray": "^1.32",
+                "spatie/pest-plugin-snapshots": "^1.1",
+                "vimeo/psalm": "^5.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Wulfheart\\LaravelActionsIdeHelper\\LaravelActionsIdeHelperServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelActionsIdeHelper": "Wulfheart\\LaravelActionsIdeHelper\\LaravelActionsIdeHelperFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Wulfheart\\LaravelActionsIdeHelper\\": "src",
+                    "Wulfheart\\LaravelActionsIdeHelper\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Wulf",
+                    "email": "dev@alexfwulf.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Generate a new IDE Helper file for Laravel Actions.",
+            "homepage": "https://github.com/wulfheart/laravel-actions-ide-helper",
+            "keywords": [
+                "laravel",
+                "laravel-actions-ide-helper",
+                "wulfheart"
+            ],
+            "support": {
+                "issues": "https://github.com/Wulfheart/laravel-actions-ide-helper/issues",
+                "source": "https://github.com/Wulfheart/laravel-actions-ide-helper/tree/0.5.0"
+            },
+            "time": "2023-06-26T12:15:35+00:00"
+>>>>>>> d1af62c743ede4323d4d643acccd70722e0ff2a2
         }
     ],
     "aliases": [],

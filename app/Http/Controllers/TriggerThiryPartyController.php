@@ -7,6 +7,7 @@ use App\Http\Clients\FootballApiClient;
 use App\Http\Clients\RapidFootballClient;
 use App\Http\Resources\BookMarkerResource;
 use App\Http\Resources\LeagueResource;
+use App\Models\Bet;
 use App\Models\BookMarker;
 use App\Models\League;
 use App\Services\FootBallApiService;
@@ -76,7 +77,9 @@ class TriggerThiryPartyController extends Controller
     {
         $response = $this->rapidFootballService->getFeatureById($feature_id);
 
-        return $response[0];
+        return (!empty($response)) ?  $response[0] : $response = [];
 
     }
+
+   
 }

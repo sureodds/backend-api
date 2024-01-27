@@ -50,7 +50,7 @@ class User extends Authenticatable implements HasMedia
         'remember_token',
     ];
 
-    protected $with = ['wallet', 'badges', 'bookmarkers'];
+    protected $with = ['wallet', 'badges', 'bookmarkers', 'pointsEarned'];
 
     /**
      * The attributes that should be cast.
@@ -79,6 +79,10 @@ class User extends Authenticatable implements HasMedia
         return $this->belongsToMany(Badge::class,'user_badge');
     }
 
+    public function pointsEarned() : HasOne
+    {
+        return $this->hasOne(UserPoints::class);
+    }
 
     /** @codeCoverageIgnore */
     protected function profilePicture(): Attribute
@@ -129,6 +133,11 @@ class User extends Authenticatable implements HasMedia
         parent::boot();
 
         static::created(function(User $user){
+
+            UserPoints::create([
+                'user_id' => $user->id,
+                'points_earned' => 0
+            ]);
 
             $user->notify(new WelcomeNotification());
         });

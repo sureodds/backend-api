@@ -9,7 +9,7 @@ it('has bookmarker/singlebookmarker page', function () {
 
     $bookMarker = BookMarker::factory()->create();
 
-    $response = $this->get(route('bookMarker.show', [
+    $response = $this->get(route('bookMarkers.show', [
         'bookMarker' => $bookMarker
     ]));
 

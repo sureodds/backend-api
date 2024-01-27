@@ -9,7 +9,7 @@ it('has bookmarker/listbookmarker page', function () {
 
     BookMarker::factory(2)->create();
 
-    $response = $this->get(route('bookMarker.index'));
+    $response = $this->get(route('bookMarkers.index'));
 
     $response->assertStatus(200);
 

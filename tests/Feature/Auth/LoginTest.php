@@ -57,3 +57,16 @@ it('has password mismatched', function () {
 
     $this->assertGuest();
 });
+
+
+
+it('can logout', function(){
+
+        $user = actingAs();
+
+        $response = $this->delete(route('logout'));
+
+        $response->assertStatus(200);
+
+        expect($response['message'])->toBe('Logged out successfully');
+});
