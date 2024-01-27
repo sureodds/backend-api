@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Notifications\WelcomeNotification;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -14,14 +15,14 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
-use Laravel\Passport\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable,  InteractsWithMedia, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable,  InteractsWithMedia, HasRoles, HasUuids;
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +32,7 @@ class User extends Authenticatable implements HasMedia
     protected $fillable = [
         'first_name',
         'last_name',
+        'username',
         'email',
         'phone_number',
         'password',
@@ -116,9 +118,9 @@ class User extends Authenticatable implements HasMedia
         return $this->belongsToMany(BookMarker::class, 'book_marker_user');
     }
 
-    public function forecast_matches() : HasMany
+    public function predictions() : HasMany
     {
-        return $this->hasMany(ForecastMatch::class);
+        return $this->hasMany(Prediction::class);
     }
 
 

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->unique()->index();
             $table->double('balance')->nullable()->default(0);
             $table->double('withdrawn')->nullable()->default(0);
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignUuid('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('account_name')->nullable();
             $table->string('account_number')->nullable();
             $table->string('bank_name')->nullable();

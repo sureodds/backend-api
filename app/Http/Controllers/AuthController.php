@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\BootstrapUser;
 use App\Enums\HttpStatusCode;
 use App\Http\Requests\ComfirmEmailRequest;
 use App\Http\Requests\LoginRequest;
@@ -26,7 +27,7 @@ class AuthController extends Controller
     public function login(LoginRequest $request): JsonResponse
     {
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $request->username_email)->orWhere('username',$request->username_email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationValidationException::withMessages([
@@ -35,7 +36,7 @@ class AuthController extends Controller
             ]);
         }
 
-        $token = $user->createToken("$user->first_name $user->last_name token")->accessToken;
+        $token = $user->createToken("$user->first_name $user->last_name token")->plainTextToken;
 
         return $this->success(
             message: 'Login suceessful',
@@ -52,7 +53,7 @@ class AuthController extends Controller
 
         $user->assignRole('creator administrator');
 
-        $token = $user->createToken("$user->first_name $user->last_name token")->accessToken;
+        $token = $user->createToken("$user->first_name $user->last_name token")->plainTextToken;
 
         return $this->success(
             message: 'Registration successful',
@@ -64,21 +65,16 @@ class AuthController extends Controller
     {
         $user = User::create($request->validated());
 
-        $user->assignRole('user');
+        BootstrapUser::execute($user);
 
-        $user->wallet()->create();
-        /** @var Badge $badge */
-        $badge = Badge::where('level','low')->first();
-
-        $user->badges()->attach($badge);
-
-        event(new Registered($user));
-
-        $token = $user->createToken("$user->first_name $user->last_name token")->accessToken;
+        $token = $user->createToken("$user->first_name $user->last_name token")->plainTextToken;
 
         return $this->success(
             message: 'Registration successful',
-            data: ['token' => $token]
+            data: [
+                'user' => new UserResource($user),
+                'token' => $token
+            ]
         );
     }
 
@@ -141,17 +137,7 @@ class AuthController extends Controller
         /** @var User $user */
         $user = auth()->user();
 
-        /** @var Token $token */
-        $token = $user->token();
-
-        $tokenRepository = app(TokenRepository::class);
-        $refreshTokenRepository = app(RefreshTokenRepository::class);
-
-        // Revoke an access token...
-        $tokenRepository->revokeAccessToken($token->id);
-
-        // Revoke all of the token's refresh tokens...
-        $refreshTokenRepository->revokeRefreshTokensByAccessTokenId($token->id);
+        $user->tokens()->delete();
 
         return response()->json(['message' => 'Logged out successfully']);
     }

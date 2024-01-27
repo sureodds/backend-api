@@ -7,26 +7,29 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ForecastMatch extends Model
+class Game extends Model
 {
     use HasFactory, HasUuids;
 
     protected $fillable = [
         'fixture_id',
-        'book_marker_id' ,
-        'forecast',
-        'forecast_odd',
-        'prediction_value' ,
-        'prediction_odd',
-        'user_id',
-        'is_submitted',
-        'code'
+        'probability_odd' ,
+        'probability',
+        'prediction_id',
+        'match',
+        'date',
+        'kick_off',
+        'result',
 
     ];
 
-    public function user() : BelongsTo
+    protected $cast = [
+        'result' => 'boolean',
+    ];
+
+    public function prediction() : BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Prediction::class);
     }
 
 

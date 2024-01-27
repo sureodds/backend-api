@@ -24,9 +24,7 @@ class RegistrationRequest extends FormRequest
     {
         return [
             //
-            'first_name' => ['string','required'],
-            'last_name' => ['string', 'required'],
-            'phone_number' => ['string', 'required'],
+            'username' => ['string','required', 'unique:users,username'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', Password::min(8)->mixedCase()->symbols()]
         ];

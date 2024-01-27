@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'rapidapi' => [
+        'host' => env('RAPIDAPIHOST', 'api-football-beta.p.rapidapi.com'),
+        'key' => env('RAPIDAPIKEY', '6a30f70c27msh4ab8d038f9ea393p18bbb0jsne97b5e92c48d'),
+        'url'  => env("RAPIDAPIURL",'https://api-football-beta.p.rapidapi.com/')
+    ],
+
 ];

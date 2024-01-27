@@ -18,8 +18,7 @@ return new class extends Migration
 
             // Add other columns for pivot table if necessary
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignUuid('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

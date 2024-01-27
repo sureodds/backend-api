@@ -23,13 +23,15 @@ class UpdateForeCastMatchRequest extends FormRequest
     {
         return [
             //
-            'fixture_id' => ['nullable'],
             'book_marker_id' => ['nullable', 'exists:book_markers,id'],
-            'forecast' => ['nullable', 'string'],
-            'forecast_odd' => ['nullable', 'numeric'],
-            'prediction_value' => ['nullable', 'string'],
-            'prediction_odd' => ['nullable', 'numeric'],
-            'is_submitted' => ['nullable', 'boolean']
+            'is_submitted' => ['nullable','boolean'],
+            'code' => ['nullable', 'boolean'],
+            'predictions' => ['nullable', 'array'],
+            'predictions.*.fixture_id' => ['nullable'],
+            'predictions.*.probability' => ['nullable', 'string'],
+            'predictions.*.probability_odd' => ['nullable', 'numeric'],
+            'predictions.*.game_id' => ['required_if:preditions,required', 'exists:games,id'],
+
         ];
     }
 }

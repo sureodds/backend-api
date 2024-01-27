@@ -23,15 +23,14 @@ class ForeCastMatchRequest extends FormRequest
     {
         return [
             //
+            'book_marker_id' => ['required', 'exists:book_markers,id'],
+            'is_submitted' => ['nullable','boolean'],
+            'code' => ['nullable', 'boolean'],
             'predictions' => ['required', 'array'],
             'predictions.*.fixture_id' => ['required'],
-            'predictions.*.book_marker_id' => ['required', 'exists:book_markers,id'],
-            'predictions.*.forecast' => ['required', 'string'],
-            'predictions.*.forecast_odd' => ['nullable', 'numeric'],
-            'predictions.*.prediction_value' => ['required', 'string'],
-            'predictions.*.prediction_odd' => ['required', 'numeric'],
-            'predictions.*.is_submitted' => ['required','boolean'],
-            'predictions.*.code' => ['nullable', 'boolean']
+            'predictions.*.probability' => ['required', 'string'],
+            'predictions.*.probability_odd' => ['required', 'numeric'],
+
         ];
     }
 }
