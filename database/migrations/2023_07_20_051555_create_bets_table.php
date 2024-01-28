@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->index()->unique();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->string('value')->nullable();
+            $table->json('value')->nullable();
             $table->timestamps();
         });
     }

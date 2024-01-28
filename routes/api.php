@@ -12,6 +12,7 @@ use App\Http\Controllers\TriggerThiryPartyController;
 use App\Http\Controllers\UserBookMarkerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ValidateForecastController;
+use App\Http\Controllers\VetGameController;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -96,7 +97,7 @@ Route::prefix('v1')->group(function () {
 
         });
 
-        Route::get('rate-forecast', [ValidateForecastController::class, 'rateForecast'])->name('rate-Forecast');
+        Route::get('rate-forecast', [VetGameController::class, 'rateGame'])->name('rate-game');
         Route::get('leaders-dashboard', [LeadersDashboardController::class, 'leadersDashboard'])->name('leaders-dashboard');
 
     });

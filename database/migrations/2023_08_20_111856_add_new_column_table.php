@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('forecast_matches', function (Blueprint $table) {
+        Schema::table('games', function (Blueprint $table) {
             //
             $table->foreignUuid('bet_id')->constrained('bets')->cascadeOnDelete();
         });
@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('forecast_matches', function (Blueprint $table) {
+        Schema::table('games', function (Blueprint $table) {
             //
             $table->dropForeign(['bet_id']);
             $table->dropColumn('bet_id');
