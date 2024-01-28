@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\BetResource;
+use App\Http\Resources\ProbabilityResource;
 use App\Models\Bet;
+use App\Models\Probability;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class BetController extends Controller
+class ProbabilityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +17,10 @@ class BetController extends Controller
     {
         //
 
-        $bets = Bet::all();
+        $probabilitys = Probability::all();
         return $this->success(
             message: "Bets return successfully",
-            data: BetResource::collection($bets),
+            data: ProbabilityResource::collection($probabilitys),
             status: 200
         );
     }
@@ -30,10 +31,10 @@ class BetController extends Controller
     public function store(Request $request)
     {
         //
-        $bet = Bet::create(['name' => $request->name]);
+        $probability = Probability::create(['name' => $request->name]);
         return $this->success(
             message: "Bet created successfully",
-            data: new BetResource($bet),
+            data: new ProbabilityResource($probability),
             status: 201
         );
     }
@@ -41,12 +42,12 @@ class BetController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Bet $bet)
+    public function show(Probability $probability)
     {
         //
         return $this->success(
             message: "Bet display successfully",
-            data: $bet,
+            data: $probability,
             status: 200
         );
     }
@@ -56,12 +57,12 @@ class BetController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bet $bet)
+    public function destroy(Probability $probability)
     {
-        $bet->delete();
+        $probability->delete();
         return $this->success(
             message: "Bet deleted successfully",
-            data: $bet,
+            data: $probability,
             status: 200
         );
     }

@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bets', function (Blueprint $table) {
+        Schema::create('probabilities', function (Blueprint $table) {
             $table->uuid('id')->index()->unique();
             $table->string('name');
             $table->string('description')->nullable();
             $table->json('value')->nullable();
+            $table->boolean('requires_odd');
             $table->timestamps();
         });
     }

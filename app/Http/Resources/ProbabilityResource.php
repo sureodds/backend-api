@@ -5,8 +5,8 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin @var \App\Model\Bet */
-class BetResource extends JsonResource
+/** @mixin @var \App\Model\Probability */
+class ProbabilityResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->uuid('id')->index()->unique();
             $table->bigInteger('fixture_id');
-            $table->string('probability');
-            $table->double('probability_odd',8,2)->nullable();
+            $table->string('prediction_value')->nullable();
+            $table->double('prediction_odd',8,2)->nullable();
             $table->foreignUuid('prediction_id')->constrained('predictions')->cascadeOnDelete();
+            $table->foreignUuid('probability_id')->constrained('probabilities')->cascadeOnDelete();
             $table->boolean('result')->nullable();
-            $table->json('match');
-            $table->string('date');
-            $table->string('kick_off');
+            $table->json('match')->nullable();
+            $table->string('date')->nullable();
+            $table->string('kick_off')->nullable();
             $table->timestamps();
         });
     }

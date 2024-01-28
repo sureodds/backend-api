@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\MediaCollections\Models\Concerns\HasUuid;
 
-class Bet extends Model
+class Probability extends Model
 {
     use HasFactory, HasUuids;
 
     protected $fillable = [
         'name',
         'description',
-        'value'
+        'value',
+        'requires_odd'
     ];
 }

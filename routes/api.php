@@ -8,6 +8,7 @@ use App\Http\Controllers\ForecastMatchController;
 use App\Http\Controllers\LeadersDashboardController;
 use App\Http\Controllers\LeagueController;
 use App\Http\Controllers\PredictionController;
+use App\Http\Controllers\ProbabilityController;
 use App\Http\Controllers\TriggerThiryPartyController;
 use App\Http\Controllers\UserBookMarkerController;
 use App\Http\Controllers\UserController;
@@ -85,6 +86,7 @@ Route::prefix('v1')->group(function () {
     Route::group(['middleware' => 'guest'], static function(){
         Route::apiResource('bookmarkers', BookMarkerController::class)->only(['index']);
         Route::apiResource('preditions', PredictionController::class)->only(['index']);
+        Route::apiResource('probabilities', ProbabilityController::class)->only(['index']);
         Route::prefix('feature')->group(function () {
             Route::get('features-by-league/{id}', [LeagueController::class, 'getFixturesByLeagueId'])->name('getFixturesByLeagueId');
         });
