@@ -4,6 +4,8 @@ namespace App\Helpers;
 
 use App\Actions\HandlePrediction;
 use App\Models\Bet;
+use App\Models\Prediction;
+use App\Models\Probability;
 
 class CompareForcast {
 
@@ -17,7 +19,7 @@ class CompareForcast {
 
     public function __invoke(mixed $forecast) : mixed
     {
-        $bet = Bet::find($forecast->bet_id);
+        $bet = Probability::find($forecast->bet_id);
         $result = false;
 
         switch ($bet->name) {

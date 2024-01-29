@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Probability;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -9,7 +10,7 @@ use Illuminate\Support\Str;
 
 
 
-class BetSeeder extends Seeder
+class ProbabilitySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -53,7 +54,7 @@ class BetSeeder extends Seeder
                 // I will come back to you1
                 "name" => "HT/FT Double",
                 "description" => "Bet on both the half-time and full-time results of a match.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
@@ -71,7 +72,7 @@ class BetSeeder extends Seeder
             [
                 "name" => "Exact Score",
                 "description" => "Bet on the exact final score of the match.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => false
             ],
             [
@@ -108,13 +109,13 @@ class BetSeeder extends Seeder
             [
                 "name" => "Total - Home",
                 "description" => "Bet on the total number of goals scored by the home team.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Total - Away",
                 "description" => "Bet on the total number of goals scored by the away team.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
@@ -136,7 +137,7 @@ class BetSeeder extends Seeder
                 'requires_odd' => true
             ],
             [
-                "name" => json_encode(["odd","even"]),
+                "name" => "Odd/Even" ,
                 "description" => "Bet on whether the total number of goals scored will be an odd or even number.",
                 "value" => json_encode(["odd","even"]),
                 'requires_odd' => true
@@ -156,13 +157,13 @@ class BetSeeder extends Seeder
             [
                 "name" => "Results/Both Teams Score",
                 "description" => "Bet on the result of the match and whether both teams will score.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Result/Total Goals",
                 "description" => "Bet on the result of the match and the total number of goals scored.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
@@ -198,7 +199,7 @@ class BetSeeder extends Seeder
             [
                 "name" => "Correct Score - First Half",
                 "description" => "Bet on the exact score of the match at half-time.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
@@ -240,7 +241,7 @@ class BetSeeder extends Seeder
             [
                 "name" => "Exact Goals Number",
                 "description" => "Bet on the exact total number of goals to be scored in the match.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => false
             ],
             [
@@ -252,19 +253,19 @@ class BetSeeder extends Seeder
             [
                 "name" => "Home Team Exact Goals Number",
                 "description" => "Bet on the exact total number of goals to be scored by the home team.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => false
             ],
             [
                 "name" => "Away Team Exact Goals Number",
                 "description" => "Bet on the exact total number of goals to be scored by the away team.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => false
             ],
             [
                 "name" => "Second Half Exact Goals Number",
                 "description" => "Bet on the exact total number of goals to be scored in the second half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => false
             ],
             [
@@ -282,18 +283,19 @@ class BetSeeder extends Seeder
             [
                 "name" => "Corners Over Under",
                 "description" => "Bet on the total number of corners to be over or under a specific value.",
-                "value" => json_encode(["over","under"])
+                "value" => json_encode(["over","under"]),
+                'requires_odd' => true
             ],
             [
                 "name" => "Exact Goals Number - First Half",
                 "description" => "Bet on the exact total number of goals to be scored in the first half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Winning Margin",
                 "description" => "Bet on the margin of victory for the winning team.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
@@ -305,7 +307,7 @@ class BetSeeder extends Seeder
             [
                 "name" => "Total Goals/Both Teams To Score",
                 "description" => "Bet on the total number of goals and whether both teams will score.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => false
             ],
             [
@@ -317,14 +319,14 @@ class BetSeeder extends Seeder
             [
                 "name" => "Halftime Result/Total Goals",
                 "description" => "Bet on the half-time result and the total number of goals scored.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
 
             ],
             [
                 "name" => "Halftime Result/Both Teams Score",
                 "description" => "Bet on the half-time result and whether both teams will score.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
@@ -384,7 +386,7 @@ class BetSeeder extends Seeder
             [
                 "name" => "Correct Score - Second Half",
                 "description" => "Bet on the exact score of the match in the second half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
@@ -426,7 +428,7 @@ class BetSeeder extends Seeder
             [
                 "name" => "Total Corners (1st Half)",
                 "description" => "Bet on the total number of corners to be taken in the first half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
@@ -456,25 +458,25 @@ class BetSeeder extends Seeder
             [
                 "name" => "Home Team Total Cards",
                 "description" => "Bet on the total number of cards shown to the home team.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Away Team Total Cards",
                 "description" => "Bet on the total number of cards shown to the away team.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Total Corners (3 way) (1st Half)",
                 "description" => "Bet on the total number of corners to be taken in the first half in a 3-way market.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Total Corners (3 way)",
                 "description" => "Bet on the total number of corners to be taken in a 3-way market.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
@@ -486,43 +488,43 @@ class BetSeeder extends Seeder
             [
                 "name" => "Total ShotOnGoal",
                 "description" => "Bet on the total number of shots on goal by both teams.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Home Total ShotOnGoal",
                 "description" => "Bet on the total number of shots on goal by the home team.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Away Total ShotOnGoal",
                 "description" => "Bet on the total number of shots on goal by the away team.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Total Goals (3 way)",
                 "description" => "Bet on the total number of goals scored in a 3-way market.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => false
             ],
             [
                 "name" => "Anytime Goal Scorer",
                 "description" => "Bet on a player to score a goal at any time during the match.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => false
             ],
             [
                 "name" => "First Goal Scorer",
                 "description" => "Bet on a player to score the first goal of the match.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Last Goal Scorer",
                 "description" => "Bet on a player to score the last goal of the match.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
@@ -534,7 +536,7 @@ class BetSeeder extends Seeder
             [
                 "name" => "First Goal Method",
                 "description" => "Bet on how the first goal of the match will be scored (e.g., header, penalty, etc.).",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
@@ -552,13 +554,13 @@ class BetSeeder extends Seeder
             [
                 "name" => "Player to be booked",
                 "description" => "Bet on a player to receive a yellow or red card during the match.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
        /*      [
                 "name" => "Player to be Sent Off",
                 "description" => "Bet on a player to be shown a red card and be sent off during the match.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ], */
             [
@@ -570,25 +572,25 @@ class BetSeeder extends Seeder
             [
                 "name" => "Home Team Total Goals(1st Half)",
                 "description" => "Bet on the total number of goals to be scored by the home team in the first half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Away Team Total Goals(1st Half)",
                 "description" => "Bet on the total number of goals to be scored by the away team in the first half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Home Team Total Goals(2nd Half)",
                 "description" => "Bet on the total number of goals to be scored by the home team in the second half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Away Team Total Goals(2nd Half)",
                 "description" => "Bet on the total number of goals to be scored by the away team in the second half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
@@ -648,25 +650,25 @@ class BetSeeder extends Seeder
             [
                 "name" => "Home Win/Over",
                 "description" => "Bet on the home team to win the match and the total number of goals to be over a specific value.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Home Win/Under",
                 "description" => "Bet on the home team to win the match and the total number of goals to be under a specific value.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Away Win/Over",
                 "description" => "Bet on the away team to win the match and the total number of goals to be over a specific value.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Away Win/Under",
                 "description" => "Bet on the away team to win the match and the total number of goals to be under a specific value.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
@@ -702,13 +704,13 @@ class BetSeeder extends Seeder
             [
                 "name" => "Total Corners (2nd Half)",
                 "description" => "Bet on the total number of corners to be taken in the second half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Total Corners (3 way) (2nd Half)",
                 "description" => "Bet on the total number of corners to be taken in the second half in a 3-way market.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
@@ -732,25 +734,25 @@ class BetSeeder extends Seeder
             [
                 "name" => "Home Total Corners (1st Half)",
                 "description" => "Bet on the total number of corners taken by the home team in the first half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Home Total Corners (2nd Half)",
                 "description" => "Bet on the total number of corners taken by the home team in the second half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Away Total Corners (1st Half)",
                 "description" => "Bet on the total number of corners taken by the away team in the first half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Away Total Corners (2nd Half)",
                 "description" => "Bet on the total number of corners taken by the away team in the second half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
@@ -840,13 +842,13 @@ class BetSeeder extends Seeder
             [
                 "name" => "Home Team Yellow Cards",
                 "description" => "Bet on the total number of yellow cards shown to the home team.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Away Team Yellow Cards",
                 "description" => "Bet on the total number of yellow cards shown to the away team.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => false
             ],
             [
@@ -907,6 +909,7 @@ class BetSeeder extends Seeder
                 "name" => "Yellow Cards 1x2 (1st Half)",
                 "description" => "Bet on the team that will receive more yellow cards in the first half.",
                 "value" => json_encode(["home","away"]),
+                'requires_odd' => true
 
             ],
             [
@@ -925,19 +928,19 @@ class BetSeeder extends Seeder
             [
                 "name" => "Offsides Total",
                 "description" => "Bet on the total number of offsides committed by both teams.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Home Team Offsides",
                 "description" => "Bet on the total number of offsides committed by the home team.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Away Team Offsides",
                 "description" => "Bet on the total number of offsides committed by the away team.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
@@ -980,195 +983,194 @@ class BetSeeder extends Seeder
             [
                 "name" => "1x2 and Total",
                 "description" => "Bet on the match result and the total number of goals scored.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => false
             ],
             [
                 "name" => "1x2 and Both Teams To Score",
                 "description" => "Bet on the match result and whether both teams will score.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => false
             ],
             [
                 "name" => "Double Chance and Total",
                 "description" => "Bet on two possible outcomes and the total number of goals scored.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => false
             ],
             [
                 "name" => "Double Chance and Both Teams To Score",
                 "description" => "Bet on two possible outcomes and whether both teams will score.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
 
             ],
             [
                 "name" => "Correct Score and Total",
                 "description" => "Bet on the exact score of the match and the total number of goals scored.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Correct Score and Both Teams To Score",
                 "description" => "Bet on the exact score of the match and whether both teams will score.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "HT/FT and Total",
                 "description" => "Bet on the half-time/full-time result and the total number of goals scored.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "HT/FT and Both Teams To Score",
                 "description" => "Bet on the half-time/full-time result and whether both teams will score.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Total Goals (Exact) and Total",
                 "description" => "Bet on the exact total number of goals and the total number of goals scored.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Total Goals (Exact) and Both Teams To Score",
                 "description" => "Bet on the exact total number of goals and whether both teams will score.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "1x2 and Total (1st Half)",
                 "description" => "Bet on the match result and the total number of goals scored in the first half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "1x2 and Both Teams To Score (1st Half)",
                 "description" => "Bet on the match result and whether both teams will score in the first half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Double Chance and Total (1st Half)",
                 "description" => "Bet on two possible outcomes and the total number of goals scored in the first half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Double Chance and Both Teams To Score (1st Half)",
                 "description" => "Bet on two possible outcomes and whether both teams will score in the first half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Correct Score and Total (1st Half)",
                 "description" => "Bet on the exact score of the match and the total number of goals scored in the first half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Correct Score and Both Teams To Score (1st Half)",
                 "description" => "Bet on the exact score of the match and whether both teams will score in the first half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "HT/FT and Total (1st Half)",
                 "description" => "Bet on the half-time/full-time result and the total number of goals scored in the first half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "HT/FT and Both Teams To Score (1st Half)",
                 "description" => "Bet on the half-time/full-time result and whether both teams will score in the first half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Total Goals (Exact) and Total (1st Half)",
                 "description" => "Bet on the exact total number of goals and the total number of goals scored in the first half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Total Goals (Exact) and Both Teams To Score (1st Half)",
                 "description" => "Bet on the exact total number of goals and whether both teams will score in the first half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
 
             [
                 "name" => "1x2 and Total (2nd Half)",
                 "description" => "Bet on the match result and the total number of goals scored in the second half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "1x2 and Both Teams To Score (2nd Half)",
                 "description" => "Bet on the match result and whether both teams will score in the second half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Double Chance and Total (2nd Half)",
                 "description" => "Bet on two possible outcomes and the total number of goals scored in the second half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Double Chance and Both Teams To Score (2nd Half)",
                 "description" => "Bet on two possible outcomes and whether both teams will score in the second half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Correct Score and Total (2nd Half)",
                 "description" => "Bet on the exact score of the match and the total number of goals scored in the second half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Correct Score and Both Teams To Score (2nd Half)",
                 "description" => "Bet on the exact score of the match and whether both teams will score in the second half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "HT/FT and Total (2nd Half)",
                 "description" => "Bet on the half-time/full-time result and the total number of goals scored in the second half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "HT/FT and Both Teams To Score (2nd Half)",
                 "description" => "Bet on the half-time/full-time result and whether both teams will score in the second half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Total Goals (Exact) and Total (2nd Half)",
                 "description" => "Bet on the exact total number of goals and the total number of goals scored in the second half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ],
             [
                 "name" => "Total Goals (Exact) and Both Teams To Score (2nd Half)",
                 "description" => "Bet on the exact total number of goals and whether both teams will score in the second half.",
-                "value" => "open_choice",
+                "value" => json_encode(["open_choice"]),
                 'requires_odd' => true
             ]
         ];
 
         foreach ($bettingOptions as $option) {
 
-            DB::table('bets')->updateOrCreate(
-                ['name' => $option['name']],
+            Probability::create(
                 [
                 'name' => $option['name'],
                 'description' => $option['description'],
-                'value' => $option['value'],
+                'value' => json_encode($option['value']),
                 'requires_odd' => $option['requires_odd']
             ]);
         }

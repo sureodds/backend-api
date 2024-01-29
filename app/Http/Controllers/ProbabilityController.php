@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Resources\ProbabilityResource;
 use App\Models\Bet;
 use App\Models\Probability;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+
 
 class ProbabilityController extends Controller
 {
@@ -17,9 +18,9 @@ class ProbabilityController extends Controller
     {
         //
 
-        $probabilitys = Probability::all();
+        $probabilitys = Probability::orderBy('name', 'asc')->get();
         return $this->success(
-            message: "Bets return successfully",
+            message: "propabilities return successfully",
             data: ProbabilityResource::collection($probabilitys),
             status: 200
         );

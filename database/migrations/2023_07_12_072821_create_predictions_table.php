@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('predictions', function (Blueprint $table) {
-            $table->uuid('id')->index()->unique();
+            $table->uuid('id')->primary()->index();
             $table->foreignUuid('book_marker_id')->constrained('book_markers')->cascadeOnDelete();
             $table->boolean('is_submitted')->default(true);
             $table->string('code')->nullable();

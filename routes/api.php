@@ -35,6 +35,8 @@ Route::prefix('v1')->group(function () {
         'message' => 'Welcome to SureOdds API',
         'apiVersion' => 'v1.0.0',
     ]));
+
+
     Route::prefix('auth')->group(
         function () {
             Route::post('/register', [AuthController::class, 'registerUsers'])->name('register');
@@ -66,40 +68,23 @@ Route::prefix('v1')->group(function () {
             });
     });
 
+
+
     Route::group(['middleware' => ['auth:sanctum']], static function () {
-
-        Route::delete('user/{id}', [UserController::class, 'destroy'])->name('users.destroy');
-        Route::get('user/{id}', [UserController::class, 'show'])->name('users.show');
-        Route::patch('user/{id}', [UserController::class, 'update'])->name('users.update');
-        Route::get('users', [UserController::class, 'index'])->name('users.index');
-        Route::apiResource('badges', BadgeController::class);
-
-        Route::apiResource('bookmarkers', BookMarkerController::class);
-
-        Route::resource('user.bookMarker', UserBookMarkerController::class)->shallow()->only(['index', 'store','destroy']);
-        Route::apiResource('leagues', LeagueController::class);
-        Route::apiResource('predictions', PredictionController::class);
-
-
+       
     });
 
     Route::group(['middleware' => 'guest'], static function(){
         Route::apiResource('bookmarkers', BookMarkerController::class)->only(['index']);
         Route::apiResource('preditions', PredictionController::class)->only(['index']);
+        Route::apiResource('leagues', LeagueController::class)->only(['index']);
         Route::apiResource('probabilities', ProbabilityController::class)->only(['index']);
+
         Route::prefix('feature')->group(function () {
             Route::get('features-by-league/{id}', [LeagueController::class, 'getFixturesByLeagueId'])->name('getFixturesByLeagueId');
         });
 
-        Route::prefix('third-party')->group(function () {
-            Route::get('populateBookMarker', [TriggerThiryPartyController::class, 'populateBookMarker'])->name('populateBookMarker');
-            Route::get('populateLeague', [TriggerThiryPartyController::class, 'populateLeague'])->name('populateLeague');
-            Route::get('getFeatureById/{id}', [TriggerThiryPartyController::class, 'getFeatureById'])->name('getFeatureById');
-            Route::get('populateBet', [TriggerThiryPartyController::class, 'populateBet'])->name('populateBet');
 
-        });
-
-        Route::get('rate-forecast', [VetGameController::class, 'rateGame'])->name('rate-game');
         Route::get('leaders-dashboard', [LeadersDashboardController::class, 'leadersDashboard'])->name('leaders-dashboard');
 
     });

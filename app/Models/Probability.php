@@ -17,4 +17,8 @@ class Probability extends Model
         'value',
         'requires_odd'
     ];
+
+    protected $cast = [
+        'requires_odd' => 'boolean'
+    ];
 }

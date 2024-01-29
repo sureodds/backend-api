@@ -63,14 +63,17 @@ class PredictionController extends Controller
         /** @var User $user */
         $user = auth()->user();
         $data = Arr::except($request->validated(),['preditions']);
-        $predictions = Arr::except($request->validated(),['book_marker_id','is_submitted', 'code']);
+        $predictions = Arr::except($request->validated()['predictions'],['book_marker_id','is_submitted', 'code']);
 
         /** @var Predition $prediction */
         $prediction = $user->predictions()->create($data);
 
          Arr::map($predictions, function ($item, $index) use ($prediction) {
-            return Game::create([
-                ...$item,
+
+            return $prediction->games()->create([
+                'fixture_id' => $item['fixture_id'],
+                "prediction_odd" => $item['prediction_odd'],
+                "prediction_value" => $item['prediction_value'],
                 "predition_id" => $prediction->id,
             ]);
         });

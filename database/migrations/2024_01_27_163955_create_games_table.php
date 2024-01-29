@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('games', function (Blueprint $table) {
-            $table->uuid('id')->index()->unique();
+            $table->uuid('id')->primary()->index();
             $table->bigInteger('fixture_id');
             $table->string('prediction_value')->nullable();
             $table->double('prediction_odd',8,2)->nullable();
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->json('match')->nullable();
             $table->string('date')->nullable();
             $table->string('kick_off')->nullable();
+            $table->string('timezone')->nullable();
             $table->timestamps();
         });
     }

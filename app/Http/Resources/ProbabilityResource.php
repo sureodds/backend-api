@@ -19,7 +19,8 @@ class ProbabilityResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'value' => $this->value
+            'value' => json_decode(json_decode($this->value)),
+            "requires_odd" => $this->requires_odd ? true :false
          ];
     }
 }

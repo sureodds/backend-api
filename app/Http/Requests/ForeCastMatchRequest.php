@@ -30,9 +30,9 @@ class ForeCastMatchRequest extends FormRequest
             'book_marker_id' => ['required', 'exists:book_markers,id'],
             'is_submitted' => ['nullable','boolean'],
             'code' => ['nullable', 'boolean'],
+
             'predictions' => ['required', 'array'],
             'predictions.*.fixture_id' => ['required'],
-
             'predictions.*.probability_id' => ['required', 'exists:probabilities,id'],
             'predictions.*.prediction_odd' => ['nullable', 'numeric'],
             'predictions.*.prediction_value' => ['nullable'],

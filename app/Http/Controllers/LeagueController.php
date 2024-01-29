@@ -6,7 +6,7 @@ use App\Enums\HttpStatusCode;
 use App\Http\Resources\LeagueResource;
 use App\Models\League;
 use App\Models\Season;
-use App\Services\FootBallApiService;
+use App\Services\RapidFootballService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -17,11 +17,11 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class LeagueController extends Controller
 {
-    public FootBallApiService $footballService;
+    public RapidFootballService $footballService;
 
     public function __construct()
     {
-        $this->footballService = new FootBallApiService();
+        $this->footballService = new RapidFootballService();
     }
 
     /**

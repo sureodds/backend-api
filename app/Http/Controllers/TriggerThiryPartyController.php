@@ -10,7 +10,6 @@ use App\Http\Resources\LeagueResource;
 use App\Models\Bet;
 use App\Models\BookMarker;
 use App\Models\League;
-use App\Services\FootBallApiService;
 use App\Services\RapidFootballService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -81,5 +80,5 @@ class TriggerThiryPartyController extends Controller
 
     }
 
-   
+
 }

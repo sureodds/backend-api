@@ -3,15 +3,16 @@
 namespace  App\Actions;
 
 use App\Enums\PredictionScore;
-use App\Services\FootBallApiService;
+use App\Http\Clients\RapidFootballClient;
+
 
 class HandlePrediction {
 
-    public FootBallApiService $footBallService;
+    public RapidFootballClient $footBallService;
 
     public function __construct()
     {
-        $this->footBallService = new FootBallApiService();
+        $this->footBallService = new RapidFootballClient();
     }
 
     // Function to handle "Match Winner" forecast

@@ -51,9 +51,7 @@ class WelcomeNotification extends Notification
         return [
             //
             'title' => 'Account creation',
-            'body' => [
-                "new account completely created"
-            ]
+            'body' =>"new account completely created",
         ];
     }
 }

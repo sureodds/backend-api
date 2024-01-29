@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('book_markers', function (Blueprint $table) {
-            $table->uuid('id')->index()->unique();
+            $table->uuid('id')->primary()->index();
             $table->string('name');
             $table->text('logo')->nullable();
             $table->string('code')->nullable();

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('probabilities', function (Blueprint $table) {
-            $table->uuid('id')->index()->unique();
+            $table->uuid('id')->primary()->index();
             $table->string('name');
             $table->string('description')->nullable();
             $table->json('value')->nullable();
