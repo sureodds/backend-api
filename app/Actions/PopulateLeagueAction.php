@@ -7,7 +7,7 @@ use App\Models\League;
 use App\Models\Season;
 use Illuminate\Support\Arr;
 
-class populateLeagueAction {
+class PopulateLeagueAction {
 
     public static function execute(array $data) : void
     {

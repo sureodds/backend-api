@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 
 class PredictionController extends Controller
@@ -70,17 +71,19 @@ class PredictionController extends Controller
 
          Arr::map($predictions, function ($item, $index) use ($prediction) {
 
-            return $prediction->games()->create([
+            $prediction->games()->create([
+                'id' => Str::uuid(),
                 'fixture_id' => $item['fixture_id'],
                 "prediction_odd" => $item['prediction_odd'],
                 "prediction_value" => $item['prediction_value'],
+                "probability_id" => $item['probability_id'],
                 "predition_id" => $prediction->id,
             ]);
         });
 
         return $this->success(
             message: "Predition saved successfully",
-            data: PredictionResource::collection($predictions),
+            data: new PredictionResource($prediction),
             status: HttpStatusCode::SUCCESSFUL->value
         );
 

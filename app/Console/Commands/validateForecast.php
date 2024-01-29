@@ -3,7 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Http\Controllers\ValidateForecastController;
+use App\Http\Controllers\VetGameController;
 use App\Models\ForecastMatch;
+use App\Models\Game;
 use Illuminate\Console\Command;
 
 class validateForecast extends Command
@@ -29,10 +31,10 @@ class validateForecast extends Command
     {
     //
 
-        $forecasts = ForecastMatch::whereNull('result')->get();
+        $games = Game::whereNull('result')->get();
 
-        $forecasts->each(function ($forecast) {
-            ValidateForecastController::validateForecast($forecast);
+        $games->each(function ($game) {
+            VetGameController::validategame($game);
         });
 
         return Command::SUCCESS;

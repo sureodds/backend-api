@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Actions\populateLeagueAction;
+use App\Actions\PopulateLeagueAction;
 use App\Models\BookMarker;
 use App\Models\Country;
 use App\Models\League;
@@ -37,7 +37,7 @@ class RapidFootballService {
 
 
         if (!empty($result['response'])) {
-            populateLeagueAction::execute($result['response']);
+            PopulateLeagueAction::execute($result['response']);
             return true;
         }
 
@@ -59,7 +59,7 @@ class RapidFootballService {
         return $result['response'];
     }
 
-    
+
 
 
 

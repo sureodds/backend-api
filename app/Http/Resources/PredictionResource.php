@@ -2,10 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Helpers\WinningRate as HelpersWinningRate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use WinningRate;
 
+/** @mixin \App\Models\Prediction */
 class PredictionResource extends JsonResource
 {
     /**
@@ -15,6 +16,8 @@ class PredictionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+    
+
         return [
             'id' => $this->id,
             'type' => 'prediction',
@@ -28,7 +31,7 @@ class PredictionResource extends JsonResource
                     'id' => $this->user->id,
                     'username' => $this->user->username,
                     'profile_pricture' => $this->user->profile_picture,
-                    'winning_rate' => WinningRate::calculate($this->user)
+                    'winning_rate' => HelpersWinningRate::calculate($this->user)
                 ],
                 'book_marker' => [
                     'id' => $this->bookMarker->id,

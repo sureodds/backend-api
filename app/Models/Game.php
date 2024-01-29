@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+
 class Game extends Model
 {
     use HasFactory, HasUuids;
@@ -19,17 +20,18 @@ class Game extends Model
         $this->rapidFootBallService = new RapidFootballService();
     }
 
+    protected $table = 'games';
 
     protected $fillable = [
+        'id',
         'fixture_id',
         'probability_odd' ,
-        'probability',
+        'probability_id',
         'prediction_id',
         'match',
         'date',
         'kick_off',
         'result',
-
     ];
 
     protected $cast = [
@@ -42,14 +44,14 @@ class Game extends Model
     }
 
 
-    public static function boot()
+    public static function boot() : void
     {
         parent::boot();
 
         static::created(function(Game $game){
 
-            $fixture =  $this->rapidFootBallService->getFeatureById($game->fixture_id);
-
+            $fixture =  $game->rapidFootBallService->getFeatureById($game->fixture_id);
+            dd($fixture);
             $game->match = json_encode([
                 'team_home' => [
                    'name' => $fixture['teams']['home']['name'],

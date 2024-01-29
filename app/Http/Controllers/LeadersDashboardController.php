@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\HttpStatusCode;
 use App\Helper\Formular;
+use App\Helpers\WinningRate;
 use App\Models\ForecastMatch;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -29,8 +30,8 @@ class LeadersDashboardController extends Controller
                 'id' => $user->id,
                 'full_name' => $user->full_name,
                 'profile_picture' => $user->profile_picture,
-                'winning_rate' => Formular::winningRate($user->id),
-                'average_odds' => $user->pointsEarned->odds_averge,
+                'winning_rate' => WinningRate::calculate($user),
+
             ];
         });
 

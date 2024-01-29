@@ -26,6 +26,7 @@ class GameResource extends JsonResource
     public function toArray(Request $request): array
     {
 
+     
 
         return [
             'type' => 'game',

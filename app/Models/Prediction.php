@@ -32,6 +32,6 @@ class Prediction extends Model
 
     public function games() : HasMany
     {
-        return $this->hasMany(Game::class);
+        return $this->hasMany(Game::class, 'prediction_id');
     }
 }

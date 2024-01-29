@@ -120,7 +120,7 @@ class User extends Authenticatable implements HasMedia
 
     public function predictions() : HasMany
     {
-        return $this->hasMany(Prediction::class);
+        return $this->hasMany(Prediction::class, 'user_id');
     }
 
 

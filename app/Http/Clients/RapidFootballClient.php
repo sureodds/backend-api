@@ -35,13 +35,13 @@ class RapidFootballClient extends PendingRequest
     }
 
 
-    public function getFeatureByLeague(int $league_api_id, string $season) : mixed
+    public function getFeatureByLeague(int $league_api_id, string $season) : void
     {
         $url = '/fixtures?league=' . $league_api_id . '&season=' . $season;
 
     }
 
-    public function getFeatureById(int $feature_id): mixed
+    public function getFeatureById(int $feature_id): void
     {
         $url = '/fixtures?id=' . $feature_id;
 
